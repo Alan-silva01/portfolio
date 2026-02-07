@@ -810,7 +810,8 @@ footer {
     position: relative;
     z-index: 10;
     background-color: var(--bg-card);
-    /* Match card background or page background? */
+    /* Define a view timeline for this specific section */
+    view-timeline: --tools-scroll y;
 }
 
 .stuck-grid {
@@ -850,8 +851,7 @@ footer {
     @media (prefers-reduced-motion: no-preference) {
         .stuck-grid .grid-item {
             animation: zoom-in linear both;
-            animation-timeline: scroll(root block);
-            /* This might need adjustment to track the specific section */
+            animation-timeline: --tools-scroll;
             will-change: transform, opacity, filter;
         }
     }
@@ -1191,4 +1191,153 @@ footer {
     font-size: 0.8rem;
     margin-top: 5px;
     opacity: 0.8;
+}
+
+/* === AIRPLANE EXPERIENCE (3D transition) === */
+#airplane-experience {
+    --airplane-padding: 10vmin;
+    --airplane-color-bg: #D0CBC7;
+    position: relative;
+    background-color: var(--airplane-color-bg);
+    overflow-x: hidden;
+    font-family: 'Libre Baskerville', serif;
+}
+
+/* Importing Font specifically for this section */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
+
+#airplane-experience .airplane-content {
+    position: relative;
+    z-index: 1;
+}
+
+#airplane-experience .loading {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(20px, 4vw, 32px);
+    background: var(--airplane-color-bg);
+    z-index: 2000;
+}
+
+#airplane-experience .section {
+    position: relative;
+    padding: var(--airplane-padding);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
+}
+
+#airplane-experience .section.right {
+    text-align: right;
+    align-items: flex-end;
+}
+
+#airplane-experience .section.dark {
+    color: white;
+    background-color: black;
+}
+
+#airplane-experience .ground-container {
+    position: relative;
+    overflow: hidden;
+    min-height: 300vh;
+}
+
+#airplane-experience .parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -100px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    transform-origin: top center;
+}
+
+#airplane-experience .ground {
+    z-index: -1;
+    background-image: url("https://assets.codepen.io/557388/background-reduced.jpg");
+}
+
+#airplane-experience .clouds {
+    z-index: 2;
+    background-image: url("https://assets.codepen.io/557388/clouds.png");
+}
+
+#airplane-experience .blueprint {
+    position: relative;
+    background-color: #131C2A;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .05) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+    background-attachment: fixed;
+}
+
+#airplane-experience .blueprint svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    stroke: white;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: 100;
+}
+
+#airplane-experience .blueprint .dark {
+    background-color: transparent;
+}
+
+#airplane-experience .scroll-cta {
+    font-size: 24px;
+    opacity: 0;
+    margin-top: 20px;
+}
+
+#airplane-experience .sunset {
+    background: url("https://assets.codepen.io/557388/sunset-reduced.jpg") no-repeat top center;
+    background-size: cover;
+    transform-origin: top center;
+    min-height: 200vh;
+}
+
+#airplane-experience h1,
+#airplane-experience h2 {
+    font-size: clamp(40px, 8vw, 80px);
+    margin: 0 0 20px 0;
+    font-weight: 700;
+}
+
+#airplane-experience h3 {
+    font-size: clamp(20px, 4vw, 40px);
+    font-weight: 400;
+    margin: 0;
+}
+
+#airplane-experience .credits {
+    margin-top: 50vh;
+    list-style: none;
+    padding: 0;
+}
+
+#airplane-experience .credits li {
+    margin-top: 10px;
+}
+
+#airplane-experience a {
+    color: white;
 }
