@@ -1,0 +1,558 @@
+@import url('https://fonts.cdnfonts.com/css/glacial-indifference');
+
+:root {
+    --bg-page: #7b7b7b;
+    /* Solid grey background for the exterior */
+    --bg-card: #0c0c0c;
+    /* Deep black for the hero card */
+    --text-primary: #FFFFFF;
+    --text-secondary: #999999;
+    --accent-color: #ff6a00;
+    /* Vibrant orange from the model */
+    --accent-glow: rgba(255, 106, 0, 0.4);
+    --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: 'Glacial Indifference', sans-serif !important;
+    white-space: normal;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 6rem;
+}
+
+/* Remove container padding inside hero card to allow content to reach the edge */
+.hero-card .container {
+    padding: 0 9;
+    margin: 0;
+    /* Remove o margin: 0 auto que centraliza */
+}
+
+.container-fluid {
+    width: 100%;
+    padding: 0 1.5rem;
+    /* Margem da logo alinhada com o conteúdo */
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid-two-cols {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    /* Primeira coluna se ajusta ao conteúdo, não força 50% */
+    gap: 0;
+    align-items: center;
+    justify-items: start;
+    /* FORÇA o conteúdo para a esquerda */
+    height: 100%;
+}
+
+/* Hero Section & Card */
+.hero {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    min-height: 100vh;
+    /* Ensure hero section takes full height */
+}
+
+.hero-card {
+    background-color: var(--bg-card);
+    width: 1300px;
+    height: 750px;
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 0 80px 150px rgba(0, 0, 0, 0.9);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Ensure elements start at the left */
+}
+
+/* Header Inside Card */
+.header {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header .container-fluid {
+    display: flex;
+    justify-content: center;
+    /* Centraliza o menu */
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #aeaeae;
+    letter-spacing: 1.3px;
+    position: absolute;
+    /* Tira o logo do fluxo para não empurrar o menu */
+    left: 3rem;
+    /* Movi mais para o centro */
+}
+
+.nav-list {
+    gap: 3rem;
+}
+
+.nav-link {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    opacity: 0.7;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    opacity: 1;
+}
+
+/* Hero Content */
+.hero-content {
+    z-index: 80;
+    padding-left: 0;
+    /* Colado na borda esquerda conforme pedido */
+    position: relative;
+    max-width: 650px;
+}
+
+.hero-title-group {
+    display: flex;
+    align-items: stretch;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.vertical-line {
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.hero-name {
+    font-family: 'Glacial Indifference', sans-serif !important;
+    font-size: 5rem;
+    font-weight: 400;
+    line-height: 0.9;
+    margin-bottom: 0.8rem;
+    letter-spacing: -2px;
+}
+
+.hero-title {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 5.5rem;
+    /* Wider, as in the model */
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 300;
+    cursor: pointer;
+    text-transform: lowercase;
+    transition: var(--transition-smooth);
+}
+
+.btn-outline {
+    border: 2px solid var(--accent-color);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: var(--accent-color);
+    box-shadow: 0 0 25px var(--accent-glow);
+}
+
+/* Photo (Massive Bottom Positioned) */
+.hero-image-container {
+    position: absolute;
+    right: 0;
+    /* Align to the right edge */
+    bottom: 0;
+    width: 65%;
+    /* Wider to allow overlap with text */
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.profile-photo {
+    width: auto;
+    height: 110%;
+    /* Reduzi para um tamanho mais equilibrado */
+    max-width: none;
+    object-fit: contain;
+    object-position: bottom right;
+    display: block;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    transform: translateY(100px);
+    /* Mantém a posição descida */
+    transform-origin: bottom right;
+    margin-right: -2rem;
+}
+
+/* Decorative Bars Right */
+.decorative-bars {
+    position: absolute;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.bar {
+    width: 4px;
+    height: 45px;
+    border-radius: 2px;
+}
+
+.bar-orange {
+    background-color: var(--accent-color);
+    height: 55px;
+}
+
+.bar-grey {
+    background-color: #333333;
+    /* Darker grey bars in the model */
+}
+
+/* Scroll Indicator Bottom Left */
+.scroll-indicator {
+    position: absolute;
+    bottom: 4.5rem;
+    left: 6rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.scroll-text {
+    font-size: 1.15rem;
+    /* Matches model text size */
+    font-weight: 300;
+    color: var(--text-secondary);
+}
+
+.scroll-icon-circle {
+    width: 30px;
+    /* Slightly smaller circle */
+    height: 30px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--accent-color);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-3px);
+    }
+}
+
+/* Section Layouts */
+.section-padding {
+    padding: 10rem 0;
+    width: 100%;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Why Hire Me Cards */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.value-card {
+    background: #141414;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+.value-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.value-card h3 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.value-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Project Cards */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.project-card {
+    background: #141414;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: var(--transition-smooth);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+}
+
+.project-image {
+    width: 100%;
+    height: 250px;
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #444;
+}
+
+.project-info {
+    padding: 2rem;
+}
+
+.project-tag {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.project-info h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.project-info p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.tech-tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    color: #aeaeae;
+}
+
+/* Contact Section */
+.contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.contact-value {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    transition: var(--transition-fast);
+}
+
+.contact-value:hover {
+    color: var(--accent-color);
+    opacity: 0.8;
+}
+
+/* Footer */
+footer {
+    padding: 5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    background: #080808;
+    text-align: center;
+}
+
+.copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+/* Entrance Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive (Minimal focus as targeting 1920x1080) */
+@media (max-width: 1200px) {
+    .header {
+        padding: 0 2rem;
+    }
+
+    .hero-card {
+        max-width: 95%;
+        height: 650px;
+    }
+
+    .hero-content {
+        padding-left: 1.5rem;
+    }
+
+    .hero-name {
+        font-size: 3.5rem;
+    }
+
+    .scroll-indicator {
+        left: 3rem;
+        bottom: 3rem;
+    }
+
+    .section-padding {
+        padding: 6rem 0;
+    }
+
+    .container {
+        padding: 0 2rem;
+    }
+}
