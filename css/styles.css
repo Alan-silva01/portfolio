@@ -1241,6 +1241,11 @@ footer {
     align-items: flex-end;
 }
 
+#airplane-experience .section.up {
+    justify-content: flex-start;
+    padding-top: 15vh;
+}
+
 #airplane-experience .section.dark {
     color: white;
     background-color: black;

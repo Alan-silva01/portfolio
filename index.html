@@ -342,103 +342,114 @@
             <div class="airplane-content">
                 <div class="loading">Carregando Experiência 3D...</div>
                 <div class="trigger"></div>
+                <!-- 1: Convite -->
                 <div class="section">
-                    <h1>Aeronaves.</h1>
-                    <h3>O guia para iniciantes.</h3>
-                    <p>Você provavelmente esqueceu o que são.</p>
-                    <div class="scroll-cta">Role para baixo</div>
-                </div>
-
-                <div class="section right">
-                    <h2>São como ônibus...</h2>
+                    <h1 style="color: var(--accent-color);">Vamos fazer um voo rápido pelo seu negócio?</h1>
+                    <div class="scroll-cta">Role para baixo para decolar</div>
                 </div>
 
                 <div class="ground-container">
                     <div class="parallax ground"></div>
-                    <div class="section right">
-                        <h2>..exceto que eles saem do chão.</h2>
-                        <p>O que!?.</p>
+
+                    <div class="ground">
+                        <!-- 2: Visão externa -->
+                        <div class="section up">
+                            <h2>Olhando sua empresa lá de cima, dá pra entender por que algumas crescem muito mais que
+                                outras?</h2>
+                        </div>
+
+                        <!-- 3: Quebra de ilusão -->
+                        <div class="section right">
+                            <h2>Não é sorte. Não é mais equipe.</h2>
+                        </div>
+
+                        <div class="parallax clouds"></div>
                     </div>
 
-                    <div class="section">
-                        <h2>Eles voam pelo céu.</h2>
-                        <p>É sério!</p>
+                    <div class="blueprint">
+                        <svg width="100%" height="100%" viewbox="0 0 100 100">
+                            <line id="line-length" x1="10" y1="80" x2="90" y2="80" stroke-width="0.5"></line>
+                            <path id="line-wingspan" d="M10 50, L40 35, M60 35 L90 50" stroke-width="0.5"></path>
+                            <circle id="circle-phalange" cx="60" cy="60" r="15" fill="transparent" stroke-width="0.5">
+                            </circle>
+                        </svg>
+
+                        <!-- 4: Verdade central -->
+                        <div class="section dark">
+                            <h2>É automação no lugar de trabalho manual.</h2>
+                        </div>
+
+                        <!-- 5: Analogia da ferramenta errada -->
+                        <div class="section dark length">
+                            <h2>É como tentar cortar uma folha de papel com os dedos:</h2>
+                            <p>até dá… mas você está usando a ferramenta errada.</p>
+                        </div>
+
+                        <!-- 6: Dor silenciosa -->
+                        <div class="section dark wingspan">
+                            <h2>Cada processo manual consome tempo, dinheiro e energia.</h2>
+                        </div>
+
+                        <!-- 7: Realidade do mercado -->
+                        <div class="section dark phalange">
+                            <h2>Enquanto você faz tudo na mão, outras empresas já estão automatizando.</h2>
+                        </div>
+
+                        <!-- 8: Diferencial competitivo -->
+                        <div class="section dark">
+                            <h2>Quem automatiza ganha escala. Quem não automatiza fica preso na operação.</h2>
+                        </div>
                     </div>
 
-                    <div class="section right">
-                        <h2>Desafiando as leis físicas.</h2>
-                        <p>É magia pura!</p>
-                    </div>
-                    <div class="parallax clouds"></div>
-                </div>
+                    <div class="sunset">
+                        <!-- 9: Visão de futuro -->
+                        <div class="section">
+                            <h2>Vendas, atendimento, cobranças e follow-ups rodando no automático.</h2>
+                        </div>
 
-                <div class="blueprint">
-                    <svg width="100%" height="100%" viewbox="0 0 100 100">
-                        <line id="line-length" x1="10" y1="80" x2="90" y2="80" stroke-width="0.5"></line>
-                        <path id="line-wingspan" d="M10 50, L40 35, M60 35 L90 50" stroke-width="0.5"></path>
-                        <circle id="circle-phalange" cx="60" cy="60" r="15" fill="transparent" stroke-width="0.5">
-                        </circle>
-                    </svg>
-                    <div class="section dark ">
-                        <h2>Fatos e figuras.</h2>
-                        <p>Vamos aos detalhes...</p>
-                    </div>
-                    <div class="section dark length">
-                        <h2>Comprimento.</h2>
-                        <p>Longo.</p>
-                    </div>
-                    <div class="section dark wingspan">
-                        <h2>Envergadura.</h2>
-                        <p>Eu não sei, maior que um gato provavelmente.</p>
-                    </div>
-                    <div class="section dark phalange">
-                        <h2>Falange Esquerda</h2>
-                        <p>Faltando</p>
-                    </div>
-                    <div class="section dark">
-                        <h2>Motores</h2>
-                        <p>Diversão de turbina</p>
-                    </div>
-                </div>
-                <div class="sunset">
-                    <div class="section"></div>
-                    <div class="section end">
-                        <h2>Fim.</h2>
-                        <ul class="credits">
-                            <li>Modelo por <a href="https://poly.google.com/view/8ciDd9k8wha" target="_blank">Google</a>
-                            </li>
-                            <li>Animado com <a href="https://greensock.com/scrolltrigger/" target="_blank">GSAP
-                                    ScrollTrigger</a></li>
-                        </ul>
+                        <!-- 🔟: Liberdade operacional -->
+                        <div class="section">
+                            <h2>Seu negócio funcionando 24h, mesmo sem você no controle direto.</h2>
+                        </div>
+
+                        <!-- ✈️ 11: Decolagem (CTA FINAL) -->
+                        <div class="section end">
+                            <div class="decolagem-cta"
+                                style="border-top: 1px solid var(--accent-color); padding-top: 20px;">
+                                <h2 style="color: var(--accent-color);">A pergunta é simples:</h2>
+                                <p style="font-size: 1.5rem; line-height: 1.4;">você vai continuar operando no
+                                    manual…<br>ou vamos decolar sua empresa com automação?</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <section id="contact" class="contact-section section-padding">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Pronto para Transformar seu Negócio?</h2>
-                    <p class="section-subtitle">Vamos agendar uma consultoria gratuita e eliminar seu trabalho manual.
-                    </p>
+            <section id="contact" class="contact-section section-padding">
+                <div class="container">
+                    <div class="section-header reveal">
+                        <h2 class="section-title">Pronto para Transformar seu Negócio?</h2>
+                        <p class="section-subtitle">Vamos agendar uma consultoria gratuita e eliminar seu trabalho
+                            manual.
+                        </p>
+                    </div>
+                    <div class="contact-grid reveal">
+                        <div class="contact-item">
+                            <span class="contact-label">Email</span>
+                            <a href="mailto:alan@intelflux.dev" class="contact-value">alan@intelflux.dev</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">WhatsApp</span>
+                            <a href="https://wa.me/55XXXXXXXXXXX" class="contact-value">Conversar Agora</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">LinkedIn</span>
+                            <a href="https://linkedin.com/in/alanferreiradasilva"
+                                class="contact-value">/alanferreiradasilva</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-grid reveal">
-                    <div class="contact-item">
-                        <span class="contact-label">Email</span>
-                        <a href="mailto:alan@intelflux.dev" class="contact-value">alan@intelflux.dev</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">WhatsApp</span>
-                        <a href="https://wa.me/55XXXXXXXXXXX" class="contact-value">Conversar Agora</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-label">LinkedIn</span>
-                        <a href="https://linkedin.com/in/alanferreiradasilva"
-                            class="contact-value">/alanferreiradasilva</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
     </main>
 
     <script src="js/airplane.js"></script>
