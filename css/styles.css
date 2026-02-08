@@ -1264,6 +1264,38 @@ footer {
     padding-top: 15vh;
 }
 
+#airplane-experience .section.end {
+    text-align: center;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 15vh;
+    /* Subindo mais o texto conforme pedido */
+}
+
+.decolagem-cta {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUpCTA 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.5s;
+}
+
+.decolagem-cta h2 {
+    font-size: clamp(32px, 6vw, 64px) !important;
+}
+
+@keyframes fadeInUpCTA {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
 #airplane-experience .section.dark {
     color: #ffffff;
     /* Explicit white for blue/black sections */
@@ -1352,11 +1384,23 @@ footer {
     font-size: clamp(22px, 3.5vw, 34px);
     /* Reduced scale */
     margin: 0 0 20px 0;
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: -1px;
     line-height: 1.1;
     /* Tighter line spacing */
+
+    /* Efeito de fade-in ao aparecer na seção */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 2s ease-out, transform 2s ease-out;
 }
+
+#airplane-experience .section.is-visible h1,
+#airplane-experience .section.is-visible h2 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 #airplane-experience h3 {
     font-size: clamp(16px, 2.5vw, 24px);

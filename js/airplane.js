@@ -248,7 +248,16 @@ function setupAirplaneAnimation(model) {
         }
     });
 
+    // Revelar textos ao entrar na viewport
+    ScrollTrigger.batch("#airplane-experience .section", {
+        onEnter: (elements) => elements.forEach(el => el.classList.add('is-visible')),
+        onLeaveBack: (elements) => elements.forEach(el => el.classList.remove('is-visible')),
+        start: "top 40%"
+    });
+
+
     // Timeline for plane movement
+
     const tl = gsap.timeline({
         onUpdate: scene.render,
         scrollTrigger: {

@@ -13,7 +13,9 @@
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/logoLoop.css">
+    <link rel="stylesheet" href="css/folder.css">
     <script src="js/logoLoop.js" defer></script>
+    <script src="js/folder.js" defer></script>
     <!-- Scripts & Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
@@ -133,53 +135,31 @@
                     <h2 class="section-title">Meus Produtos SaaS</h2>
                     <p class="section-subtitle">Soluções proprietárias resolvendo problemas reais no mercado.</p>
                 </div>
-                <div class="projects-grid">
-                    <div class="project-card reveal">
-                        <div class="project-image">
-                            <span>ZAPDIN Mockup</span>
-                        </div>
-                        <div class="project-info">
-                            <span class="project-tag">Gestão Financeira</span>
-                            <h3>ZAPDIN</h3>
-                            <p>Controle financeiro inteligente direto no WhatsApp via áudio, texto ou foto.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">N8N</span>
-                                <span class="tech-tag">Supabase</span>
-                                <span class="tech-tag">WhatsApp API</span>
-                                <span class="tech-tag">AI</span>
+                <div class="folder-container">
+                    <div class="folder" id="projects-folder">
+                        <div class="folder__back">
+                            <!-- Project Papers -->
+                            <div class="paper paper-1">
+                                <h4>ZAPDIN</h4>
+                                <p>Gestão Financeira Inteligente</p>
+                                <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
+                                    alt="ZAPDIN">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card reveal">
-                        <div class="project-image">
-                            <span>UPZY Mockup</span>
-                        </div>
-                        <div class="project-info">
-                            <span class="project-tag">Vendas & Performance</span>
-                            <h3>UPZY</h3>
-                            <p>Sistema mobile para controle de vendas, metas e performance de equipes comerciais.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Supabase</span>
-                                <span class="tech-tag">Dashboards</span>
-                                <span class="tech-tag">Real-time</span>
+                            <div class="paper paper-2">
+                                <h4>UPZY</h4>
+                                <p>Performance de Vendas Mobile</p>
+                                <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
+                                    alt="UPZY">
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card reveal">
-                        <div class="project-image">
-                            <span>NERO CRM Mockup</span>
-                        </div>
-                        <div class="project-info">
-                            <span class="project-tag">CRM & Automação</span>
-                            <h3>NERO CRM</h3>
-                            <p>CRM com Kanban, mensageria automatizada e integração profunda com N8N.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">N8N</span>
-                                <span class="tech-tag">Supabase</span>
-                                <span class="tech-tag">AI Conversational</span>
+                            <div class="paper paper-3">
+                                <h4>NERO CRM</h4>
+                                <p>CRM & Automação Completa</p>
+                                <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
+                                    alt="NERO CRM">
                             </div>
+                            <!-- Folder Parts -->
+                            <div class="folder__front"></div>
+                            <div class="folder__front right"></div>
                         </div>
                     </div>
                 </div>
@@ -520,9 +500,11 @@
                         <!-- ✈️ 11: Decolagem (CTA FINAL) -->
                         <div class="section end">
                             <div class="decolagem-cta">
-                                <h2>Vamos decolar juntos?</h2>
+                                <h2>Vamos decolar sua empresa juntos?</h2>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
@@ -564,7 +546,13 @@
                     pauseOnHover: true
                 });
             }
+
+            // Initialize Projects Folder
+            if (window.initFolder) {
+                initFolder('.folder-container');
+            }
         });
+
     </script>
     <script type="module" src="/js/airplane.js"></script>
     <script type="module" src="/js/main.js"></script>
