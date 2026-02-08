@@ -98,7 +98,9 @@ class AirplaneScene {
                 let camera = view.camera;
                 camera.aspect = this.w / this.h;
                 let camZ = (screen.width - (this.w * 1)) / 3;
-                camera.position.z = camZ < 180 ? 180 : camZ;
+                // On mobile, push camera further back to make plane smaller
+                let minZ = this.w < 768 ? 280 : 180;
+                camera.position.z = camZ < minZ ? minZ : camZ;
                 camera.updateProjectionMatrix();
             }
         }
