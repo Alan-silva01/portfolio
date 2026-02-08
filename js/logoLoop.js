@@ -31,15 +31,29 @@ class LogoLoop {
         clone.setAttribute('aria-hidden', 'true');
         this.track.appendChild(clone);
 
+        // Force a reflow to ensure the animation picks up the new variables
+        this.container.style.display = 'none';
+        this.container.offsetHeight; // reflow
+        this.container.style.display = 'block';
+
         // Calculate duration based on speed and width
-        // Duration = Distance / Speed
         const duration = listWidth / this.speed;
 
         // Set CSS variables for the animation
         this.container.style.setProperty('--logoloop-duration', `${duration}s`);
         this.container.style.setProperty('--logoloop-translate-x', `-${listWidth}px`);
+
+        // Add resize listener only once
+        if (!this.resizeAttached) {
+            window.addEventListener('resize', () => {
+                clearTimeout(this.resizeTimeout);
+                this.resizeTimeout = setTimeout(() => this.init(), 200);
+            });
+            this.resizeAttached = true;
+        }
     }
 }
+
 
 // Export for use
 window.LogoLoop = LogoLoop;
