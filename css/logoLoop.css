@@ -43,26 +43,10 @@
 
 /* Removed grayscale at user request */
 
-/* Fade Effect */
+/* Fade Effect Removed at user request */
 .logoloop--fade::before,
 .logoloop--fade::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 15%;
-    pointer-events: none;
-    z-index: 10;
-}
-
-.logoloop--fade::before {
-    left: 0;
-    background: linear-gradient(to right, var(--logoloop-fadeColor) 0%, rgba(0, 0, 0, 0) 100%);
-}
-
-.logoloop--fade::after {
-    right: 0;
-    background: linear-gradient(to left, var(--logoloop-fadeColor) 0%, rgba(0, 0, 0, 0) 100%);
+    display: none;
 }
 
 /* Hide/Show logic managed in styles.css */

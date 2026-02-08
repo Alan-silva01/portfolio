@@ -21,10 +21,20 @@ class LogoLoop {
     }
 
     init() {
+        // Wait for dimensions if not ready
+        if (this.list.offsetWidth === 0) {
+            setTimeout(() => this.init(), 100);
+            return;
+        }
+
         // Clone the list to ensure we have enough items to loop
         const listWidth = this.list.offsetWidth;
         const containerWidth = this.container.offsetWidth;
         const copiesNeeded = Math.ceil(containerWidth / listWidth) + 1;
+
+        // Clear existing clones if any (for re-init)
+        const existingClones = this.track.querySelectorAll('.logoloop__list[aria-hidden="true"]');
+        existingClones.forEach(el => el.remove());
 
         for (let i = 0; i < copiesNeeded; i++) {
             const clone = this.list.cloneNode(true);
@@ -35,6 +45,9 @@ class LogoLoop {
         if (this.pauseOnHover) {
             this.container.addEventListener('mouseenter', () => this.isHovered = true);
             this.container.addEventListener('mouseleave', () => this.isHovered = false);
+            // Also touch events for mobile
+            this.container.addEventListener('touchstart', () => this.isHovered = true);
+            this.container.addEventListener('touchend', () => this.isHovered = false);
         }
 
         this.start();
