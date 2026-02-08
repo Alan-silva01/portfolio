@@ -11,10 +11,19 @@ class AirplaneScene {
             alpha: true
         });
 
+        const isMobile = window.innerWidth < 768;
         this.renderer.setSize(window.innerWidth, window.innerHeight);
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+
+        // Optimize for mobile: Disable shadows and cap pixel ratio
+        if (!isMobile) {
+            this.renderer.shadowMap.enabled = true;
+            this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        } else {
+            this.renderer.shadowMap.enabled = false;
+        }
+
+        const pixelRatio = Math.min(window.devicePixelRatio, isMobile ? 2 : 3);
+        this.renderer.setPixelRatio(pixelRatio);
 
         // Append to the experience container
         const container = document.querySelector('#airplane-experience');

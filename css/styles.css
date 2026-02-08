@@ -1286,7 +1286,14 @@ footer {
     background-position: top center;
     background-size: cover;
     transform-origin: top center;
+    will-change: transform;
 }
+
+#airplane-experience .ground,
+#airplane-experience .clouds {
+    will-change: transform;
+}
+
 
 #airplane-experience .ground {
     z-index: -1;
