@@ -814,6 +814,10 @@ footer {
     view-timeline: --tools-scroll y;
 }
 
+.mobile-tools-container {
+    display: none;
+}
+
 .stuck-grid {
     height: 100vh;
     perspective: 1000px;
@@ -1180,29 +1184,21 @@ footer {
         max-width: 100% !important;
     }
 
-    /* STUCK GRID FIXES */
-    .stuck-grid {
-        grid-template-columns: repeat(10, 10vw);
-        grid-template-rows: repeat(10, 10vh);
-        width: 100vw;
-        max-width: 100vw;
-        overflow: hidden;
+    /* TOOLS SECTION MOBILE FIXES */
+    .tools-section {
+        height: auto !important;
+        min-height: 100px;
+        background-color: transparent;
+        padding: 40px 0;
     }
 
-    /* Fallback if animation-timeline is not supported or fails */
-    .stuck-grid .grid-item {
-        opacity: 1 !important;
-        transform: translateZ(0) !important;
-        font-size: 3vmin;
+    .desktop-tools {
+        display: none !important;
     }
 
-    .stuck-grid .grid-item img {
-        height: 40px;
-    }
-
-    .stuck-grid .grid-item span {
-        font-size: 0.7rem;
-        display: none;
+    .mobile-tools-container {
+        display: block !important;
+        width: 100%;
     }
 }
 

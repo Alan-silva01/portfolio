@@ -12,6 +12,8 @@
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
     <!-- Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/logoLoop.css">
+    <script src="js/logoLoop.js" defer></script>
     <!-- Scripts & Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
@@ -186,7 +188,8 @@
 
         <!-- Tools Section with Scroll Effect -->
         <section id="tools" class="tools-section">
-            <div class="tools-wrapper" style="height: 300vh;">
+            <!-- Desktop: 3D Scroll Effect -->
+            <div class="tools-wrapper desktop-tools" style="height: 300vh;">
                 <div class="stuck-grid">
                     <div class="grid-item"><img loading="lazy"
                             src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/canva_logo_bvoofx.png"
@@ -221,7 +224,6 @@
                     <div class="grid-item"><img loading="lazy"
                             src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488315/kommo_logo_fgx4vb.png"
                             alt="Kommo"><span>Kommo</span></div>
-
                     <div class="grid-item"><img loading="lazy"
                             src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488320/sql_logo_td0xpe.avif"
                             alt="SQL"><span>SQL</span></div>
@@ -231,109 +233,103 @@
                     <div class="grid-item"><img loading="lazy"
                             src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488310/antropic_calude_logo_gfm0j1.png"
                             alt="Claude"><span>Claude</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/botconversa_logo_zonnzt.png"
-                            alt="BotConversa"><span>BotConversa</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488313/gmail_logo_rq0vkn.png"
-                            alt="Gmail"><span>Gmail</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488317/openrouter_logo_rbjucz.png"
-                            alt="OpenRouter"><span>OpenRouter</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488314/HTML5_Logo_512_ooqzlu.avif"
-                            alt="HTML5"><span>HTML5</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/telegram_yewgjx.png"
-                            alt="Telegram"><span>Telegram</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488316/n8n_logo_zkbh0k.avif"
-                            alt="N8N"><span>N8N</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488312/calendly_logo_gypt5i.png"
-                            alt="Calendly"><span>Calendly</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/calender_logo_pumygq.png"
-                            alt="Calendar"><span>Calendar</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488310/cloudinary_logo_tzlyqn.png"
-                            alt="Cloudinary"><span>Cloudinary</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/supabase-logo_esck15.avif"
-                            alt="Supabase"><span>Supabase</span></div>
-                    <!-- REPEATING TO FILL GRID -->
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488315/Logo_OpenAI_f4mv9s.avif"
-                            alt="ChatGPT"><span>ChatGPT</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488322/zapier_logo_h3bjme.avif"
-                            alt="Zapier"><span>Zapier</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/vercel_logo_onktje.png"
-                            alt="Vercel"><span>Vercel</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/stripe_logo_ehpcrd.png"
-                            alt="Stripe"><span>Stripe</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/strava_logo_ujdgon.png"
-                            alt="Strava"><span>Strava</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488318/sheets_logo_vq71t3.png"
-                            alt="Google Sheets"><span>Google Sheets</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488318/rd_station_logo_na3tdq.png"
-                            alt="RD Station"><span>RD Station</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488318/schedule_logo_gcxlhd.png"
-                            alt="Schedule"><span>Schedule</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488316/onesignal_logo_vegq5b.jpg"
-                            alt="OneSignal"><span>OneSignal</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488315/linkedin_a8wh76.png"
-                            alt="LinkedIn"><span>LinkedIn</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488314/hotmart_logo_dampqy.png"
-                            alt="Hotmart"><span>Hotmart</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488314/google_meet_logo_u4hipi.png"
-                            alt="Google Meet"><span>Google Meet</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488313/firebase_logo_gckmlk.avif"
-                            alt="Firebase"><span>Firebase</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488312/cloudflare_logo_zgvkkk.png"
-                            alt="Cloudflare"><span>Cloudflare</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488320/sql_logo_td0xpe.avif"
-                            alt="SQL"><span>SQL</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/botconversa_logo_zonnzt.png"
-                            alt="BotConversa"><span>BotConversa</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488314/HTML5_Logo_512_ooqzlu.avif"
-                            alt="HTML5"><span>HTML5</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488315/kommo_logo_fgx4vb.png"
-                            alt="Kommo"><span>Kommo</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488310/cloudinary_logo_tzlyqn.png"
-                            alt="Cloudinary"><span>Cloudinary</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/supabase-logo_esck15.avif"
-                            alt="Supabase"><span>Supabase</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488316/n8n_logo_zkbh0k.avif"
-                            alt="N8N"><span>N8N</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488312/calendly_logo_gypt5i.png"
-                            alt="Calendly"><span>Calendly</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/calender_logo_pumygq.png"
-                            alt="Calendar"><span>Calendar</span></div>
-                    <div class="grid-item"><img loading="lazy"
-                            src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/canva_logo_bvoofx.png"
-                            alt="Canva"><span>Canva</span></div>
+                </div>
+            </div>
+
+            <!-- Mobile: Continuous Loop Marquee -->
+            <div class="mobile-tools-container">
+                <div class="logoloop logoloop--fade" id="tech-marquee">
+                    <div class="logoloop__track">
+                        <ul class="logoloop__list">
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488315/Logo_OpenAI_f4mv9s.avif"
+                                    alt="OpenAI"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/supabase-logo_esck15.avif"
+                                    alt="Supabase"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/whatsapp_logo_wwm3or.png"
+                                    alt="WhatsApp"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488315/javascript-logo_gonlbd.avif"
+                                    alt="JavaScript"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488317/postgresql_logo_v5seon.png"
+                                    alt="PostgreSQL"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488313/figma_logo_peh5nk.png"
+                                    alt="Figma"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488314/google_maps_logo_ylhdfq.png"
+                                    alt="Google Maps"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/digital_ocean_logo_j8imwp.png"
+                                    alt="Digital Ocean"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488313/github_logo_x8zyym.png"
+                                    alt="GitHub"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488315/kommo_logo_fgx4vb.png"
+                                    alt="Kommo"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488320/sql_logo_td0xpe.avif"
+                                    alt="SQL"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488322/zapi_logo_c7onqp.png"
+                                    alt="Z-API"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488310/antropic_calude_logo_gfm0j1.png"
+                                    alt="Claude"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/botconversa_logo_zonnzt.png"
+                                    alt="BotConversa"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488313/gmail_logo_rq0vkn.png"
+                                    alt="Gmail"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488317/openrouter_logo_rbjucz.png"
+                                    alt="OpenRouter"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488314/HTML5_Logo_512_ooqzlu.avif"
+                                    alt="HTML5"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/telegram_yewgjx.png"
+                                    alt="Telegram"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488316/n8n_logo_zkbh0k.avif"
+                                    alt="N8N"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488312/calendly_logo_gypt5i.png"
+                                    alt="Calendly"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488311/calender_logo_pumygq.png"
+                                    alt="Calendar"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488310/cloudinary_logo_tzlyqn.png"
+                                    alt="Cloudinary"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/vercel_logo_onktje.png"
+                                    alt="Vercel"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/stripe_logo_ehpcrd.png"
+                                    alt="Stripe"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488321/strava_logo_ujdgon.png"
+                                    alt="Strava"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488318/sheets_logo_vq71t3.png"
+                                    alt="Google Sheets"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488318/rd_station_logo_na3tdq.png"
+                                    alt="RD Station"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488318/schedule_logo_gcxlhd.png"
+                                    alt="Schedule"></li>
+                            <li class="logoloop__item"><img
+                                    src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770488316/onesignal_logo_vegq5b.jpg"
+                                    alt="OneSignal"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -451,6 +447,18 @@
             </section>
     </main>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const marqueeElement = document.getElementById('tech-marquee');
+            if (marqueeElement) {
+                new LogoLoop(marqueeElement, {
+                    speed: 50,
+                    direction: 'left',
+                    pauseOnHover: true
+                });
+            }
+        });
+    </script>
     <script type="module" src="/js/airplane.js"></script>
     <script type="module" src="/js/main.js"></script>
 </body>
