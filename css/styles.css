@@ -1353,3 +1353,54 @@ footer {
 #airplane-experience a {
     color: white;
 }
+
+/* --- MOBILE RESPONSIVENESS REFINEMENTS --- */
+@media (max-width: 768px) {
+    #airplane-experience {
+        --airplane-padding: 1rem;
+    }
+
+    #airplane-experience .section {
+        padding: 1rem var(--airplane-padding);
+        min-height: 70vh;
+        justify-content: flex-end;
+        padding-bottom: 5vh;
+    }
+
+    #airplane-experience .section.right {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    #airplane-experience h1,
+    #airplane-experience h2 {
+        font-size: 16px !important;
+        line-height: 1.1 !important;
+        margin-bottom: 8px;
+        max-width: 85%;
+    }
+
+    #airplane-experience h3 {
+        font-size: 14px !important;
+        line-height: 1.1 !important;
+        margin-bottom: 6px;
+    }
+
+    #airplane-experience .section.up {
+        padding-top: 5vh;
+        justify-content: flex-start;
+    }
+
+    #airplane-experience .scroll-cta {
+        font-size: 12px;
+        margin-top: 8px;
+    }
+
+    /* Prevent text from overlapping plane if it's too long */
+    #airplane-experience .section>* {
+        position: relative;
+        z-index: 10;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        /* Subtle glow for readability on complex backgrounds */
+    }
+}
