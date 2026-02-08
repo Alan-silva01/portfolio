@@ -214,11 +214,13 @@ function setupAirplaneAnimation(model) {
 
     scene.render();
 
-    const sectionDuration = 1;
+    // On mobile, use faster section duration to match shorter scroll distances
+    const isMobile = window.innerWidth < 768;
+    const sectionDuration = isMobile ? 0.6 : 1;
 
-    // Parallax effects
+    // Parallax effects (reduced on mobile)
     gsap.to('.ground', {
-        y: "30%",
+        y: isMobile ? "15%" : "30%",
         scrollTrigger: {
             trigger: ".ground-container",
             scrub: true,
@@ -228,7 +230,7 @@ function setupAirplaneAnimation(model) {
     });
 
     gsap.from('.clouds', {
-        y: "25%",
+        y: isMobile ? "10%" : "25%",
         scrollTrigger: {
             trigger: ".ground-container",
             scrub: true,
