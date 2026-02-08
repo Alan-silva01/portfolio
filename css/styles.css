@@ -1168,13 +1168,11 @@ footer {
     /* GLOBAL MOBILE FIXES */
     body {
         align-items: stretch !important;
-        overflow-x: hidden !important;
     }
 
     main {
         width: 100% !important;
         max-width: 100vw !important;
-        overflow-x: hidden !important;
     }
 
     .container {
@@ -1184,13 +1182,17 @@ footer {
 
     /* STUCK GRID FIXES */
     .stuck-grid {
-        grid-template-columns: repeat(5, 20vw);
+        grid-template-columns: repeat(10, 10vw);
         grid-template-rows: repeat(10, 10vh);
+        width: 100vw;
         max-width: 100vw;
-        overflow-x: hidden;
+        overflow: hidden;
     }
 
+    /* Fallback if animation-timeline is not supported or fails */
     .stuck-grid .grid-item {
+        opacity: 1 !important;
+        transform: translateZ(0) !important;
         font-size: 3vmin;
     }
 
