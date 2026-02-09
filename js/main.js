@@ -2,21 +2,27 @@ import projectsData from './projectsData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const marqueeElement = document.getElementById('tech-marquee');
+
+    // Initialize LogoLoop safely
     if (marqueeElement) {
-        new LogoLoop(marqueeElement, {
-            speed: 50,
-            direction: 'left',
-            pauseOnHover: true
-        });
+        if (typeof LogoLoop !== 'undefined') {
+            new LogoLoop(marqueeElement, {
+                speed: 50,
+                direction: 'left',
+                pauseOnHover: true
+            });
+        } else {
+            console.warn('LogoLoop not defined');
+        }
     }
 
-    // Initialize Projects Folders
+    // Initialize Projects Folders safely
     if (window.initFolder) {
         window.solucoesFolder = initFolder('#solucoes-container', {
-            onOpen: () => window.agentesFolder.close()
+            onOpen: () => window.agentesFolder && window.agentesFolder.close()
         });
         window.agentesFolder = initFolder('#agentes-container', {
-            onOpen: () => window.solucoesFolder.close()
+            onOpen: () => window.solucoesFolder && window.solucoesFolder.close()
         });
     }
 
@@ -179,13 +185,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }, revealOptions);
 
     // Observe all reveal elements
-    document.querySelectorAll('.reveal').forEach((el, index) => {
-        // Hero elements get staggered delay, others handle themselves or use default
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el, index) => {
         if (el.closest('.hero-card') && !el.dataset.delay) {
             el.dataset.delay = index * 150;
         }
         revealObserver.observe(el);
     });
+
+    // Fallback: Force reveal after 3 seconds if IntersectionObserver fails/is slow
+    setTimeout(() => {
+        revealElements.forEach(el => {
+            if (!el.classList.contains('active')) {
+                el.classList.add('active');
+            }
+        });
+    }, 3000);
 
     // Active Navigation Highlighting on Scroll
     const sections = document.querySelectorAll('section');

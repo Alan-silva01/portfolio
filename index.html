@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="css/logoLoop.css">
     <link rel="stylesheet" href="css/folder.css">
     <link rel="stylesheet" href="css/modal.css">
-    <script src="js/logoLoop.js" defer></script>
-    <script src="js/folder.js" defer></script>
+    <script src="js/logoLoop.js" type="module"></script>
+    <script src="js/folder.js" type="module"></script>
     <!-- Scripts & Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
@@ -472,7 +472,6 @@
         <!-- Airplane Experience Wrapper -->
         <div id="airplane-experience">
             <div class="airplane-content">
-
                 <div class="trigger"></div>
                 <!-- 1: Convite -->
                 <div class="section">
@@ -489,7 +488,6 @@
                             <h2>Olhando aqui de cima, dá para ver que sua empresa não está crescendo tão rápido como
                                 deveria!</h2>
                         </div>
-
 
                         <!-- 3: Quebra de ilusão -->
                         <div class="section right">
@@ -554,57 +552,38 @@
                                 <h2>Vamos decolar sua empresa juntos?</h2>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
+        </div>
 
-            <section id="contact" class="contact-section section-padding">
-                <div class="container">
-                    <div class="section-header reveal">
-                        <h2 class="section-title">Pronto para Transformar seu Negócio?</h2>
-                        <p class="section-subtitle">Vamos agendar uma consultoria gratuita e eliminar seu trabalho
-                            manual.
-                        </p>
+        <section id="contact" class="contact-section section-padding">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Pronto para Transformar seu Negócio?</h2>
+                    <p class="section-subtitle">Vamos agendar uma consultoria gratuita e eliminar seu trabalho
+                        manual.
+                    </p>
+                </div>
+                <div class="contact-grid reveal">
+                    <div class="contact-item">
+                        <span class="contact-label">Email</span>
+                        <a href="mailto:alan@intelflux.dev" class="contact-value">alan@intelflux.dev</a>
                     </div>
-                    <div class="contact-grid reveal">
-                        <div class="contact-item">
-                            <span class="contact-label">Email</span>
-                            <a href="mailto:alan@intelflux.dev" class="contact-value">alan@intelflux.dev</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-label">WhatsApp</span>
-                            <a href="https://wa.me/55XXXXXXXXXXX" class="contact-value">Conversar Agora</a>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-label">LinkedIn</span>
-                            <a href="https://linkedin.com/in/alanferreiradasilva"
-                                class="contact-value">/alanferreiradasilva</a>
-                        </div>
+                    <div class="contact-item">
+                        <span class="contact-label">WhatsApp</span>
+                        <a href="https://wa.me/55XXXXXXXXXXX" class="contact-value">Conversar Agora</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">LinkedIn</span>
+                        <a href="https://linkedin.com/in/alanferreiradasilva"
+                            class="contact-value">/alanferreiradasilva</a>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const marqueeElement = document.getElementById('tech-marquee');
-            if (marqueeElement) {
-                new LogoLoop(marqueeElement, {
-                    speed: 50,
-                    direction: 'left',
-                    pauseOnHover: true
-                });
-            }
-
-            // Initialize Projects Folder
-            if (window.initFolder) {
-                initFolder('.folder-container');
-            }
-        });
-
-    </script>
     <div id="project-modal" class="project-modal">
         <button class="modal-nav prev" id="modal-prev" aria-label="Projeto Anterior">
             <span class="nav-arrow">‹</span>
