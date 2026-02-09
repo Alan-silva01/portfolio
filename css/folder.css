@@ -111,29 +111,29 @@
 .folder:not(.open):hover .paper:nth-child(1) {
     transform: translate(-150%, -40%) rotate(-8deg);
     opacity: 1;
-    pointer-events: none;
-    /* Cannot click papers in peek mode */
+    pointer-events: auto;
+    /* Clickable in peek mode */
     z-index: 4;
 }
 
 .folder:not(.open):hover .paper:nth-child(2) {
     transform: translate(-90%, -60%) rotate(-2deg);
     opacity: 1;
-    pointer-events: none;
+    pointer-events: auto;
     z-index: 4;
 }
 
 .folder:not(.open):hover .paper:nth-child(3) {
     transform: translate(-10%, -60%) rotate(2deg);
     opacity: 1;
-    pointer-events: none;
+    pointer-events: auto;
     z-index: 4;
 }
 
 .folder:not(.open):hover .paper:nth-child(4) {
     transform: translate(50%, -40%) rotate(8deg);
     opacity: 1;
-    pointer-events: none;
+    pointer-events: auto;
     z-index: 4;
 }
 

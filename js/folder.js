@@ -14,6 +14,8 @@ class Folder {
     init() {
         this.folder.addEventListener('click', (e) => {
             const paper = e.target.closest('.paper');
+
+            // If folder is already open and paper is clicked -> Open Modal immediately
             if (this.isOpen && paper) {
                 const projectId = paper.getAttribute('data-project');
                 if (window.openProjectModal) {
@@ -21,14 +23,44 @@ class Folder {
                 }
                 return;
             }
+
+            // If folder is CLOSED but paper is clicked (during peek) -> Animate Open then Open Modal
+            if (!this.isOpen && paper) {
+                const projectId = paper.getAttribute('data-project');
+                this.toggle(); // Start animation
+
+                // Wait for animation (approx 500ms) then open modal
+                setTimeout(() => {
+                    if (window.openProjectModal) {
+                        window.openProjectModal(projectId);
+                    }
+                }, 500);
+                return;
+            }
+
+            // Otherwise just toggle folder
             this.toggle();
         });
 
         // Hover effect is now handled purely by CSS for the "peek" inside state.
         // Click triggers the "open" state which flies the papers out.
 
-        this.container.addEventListener('mouseleave', () => {
+        // Close on scroll
+        window.addEventListener('scroll', () => {
             if (this.isOpen) this.close();
+        }, { passive: true });
+
+        // Close when clicking outside or on another folder
+        document.addEventListener('click', (e) => {
+            if (!this.isOpen) return;
+
+            // Allow clicks inside this folder container
+            if (this.container.contains(e.target)) return;
+
+            // Allow clicks on modal (don't close folder if modal is open/opening)
+            if (document.querySelector('.project-modal.active')) return;
+
+            this.close();
         });
 
         this.papers.forEach((paper, index) => {
@@ -36,13 +68,15 @@ class Folder {
             paper.addEventListener('mouseleave', () => this.handleMouseLeave(paper));
         });
 
-        // Close on backdrop click
+        // Close on backdrop click (already handled by document click above, but keeping for specific wrapper behavior if improved)
         this.container.closest('.folder-wrapper').addEventListener('click', (e) => {
-            if (this.isOpen && e.target.classList.contains('folder-wrapper')) {
+            // This might be redundant with document click, but ensures wrapper clicks work
+            if (this.isOpen && e.target === this.container.closest('.folder-wrapper')) {
                 this.close();
             }
         });
     }
+
 
     toggle() {
         this.isOpen = !this.isOpen;
