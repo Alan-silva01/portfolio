@@ -16,22 +16,21 @@ class Folder {
             const paper = e.target.closest('.paper');
             if (this.isOpen && paper) {
                 const projectId = paper.getAttribute('data-project');
-
-                // Add exit animation
-                paper.classList.add('exit-animation');
-
-                // Wait for animation to finish before opening modal
-                setTimeout(() => {
-                    if (window.openProjectModal) {
-                        window.openProjectModal(projectId);
-                    }
-                    // Remove class after modal is triggered so it's ready for next time
-                    setTimeout(() => paper.classList.remove('exit-animation'), 500);
-                }, 600);
-
+                if (window.openProjectModal) {
+                    window.openProjectModal(projectId);
+                }
                 return;
             }
             this.toggle();
+        });
+
+        // Hover to open
+        this.folder.addEventListener('mouseenter', () => {
+            if (!this.isOpen) this.toggle();
+        });
+
+        this.container.addEventListener('mouseleave', () => {
+            if (this.isOpen) this.close();
         });
 
         this.papers.forEach((paper, index) => {

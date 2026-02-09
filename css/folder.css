@@ -108,31 +108,23 @@
 }
 
 .folder.open .paper:nth-child(1) {
-    transform: translate(-150%, -45%) rotate(-8deg);
+    transform: translate(-250%, -160%);
     z-index: 4;
 }
 
 .folder.open .paper:nth-child(2) {
-    transform: translate(-90%, -65%) rotate(-2deg);
+    transform: translate(-116%, -195%);
     z-index: 4;
 }
 
 .folder.open .paper:nth-child(3) {
-    transform: translate(-10%, -65%) rotate(2deg);
+    transform: translate(16%, -195%);
     z-index: 4;
 }
 
 .folder.open .paper:nth-child(4) {
-    transform: translate(50%, -45%) rotate(8deg);
+    transform: translate(150%, -160%);
     z-index: 4;
-}
-
-/* Exit animation for when paper is clicked */
-.paper.exit-animation {
-    transform: translate(-50%, -500%) rotate(0deg) scale(2) !important;
-    opacity: 0 !important;
-    transition: all 0.6s cubic-bezier(0.5, 0, 0, 1.2) !important;
-    z-index: 1000 !important;
 }
 
 .folder.open .folder__front {
