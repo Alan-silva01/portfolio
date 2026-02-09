@@ -213,24 +213,32 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (scrollPos >= (sectionTop - sectionHeight / 3)) {
+            // Use a larger buffer for top-level sections
+            if (scrollPos >= (sectionTop - 150)) {
                 current = section.getAttribute('id');
             }
         });
 
-        // Special case for "Quem sou" (About) inside the Hero Slider
+        // Special case for "Home" vs "Quem sou" inside the Hero Slider
         const slider = document.getElementById('hero-slider');
         if (slider) {
             const sliderTop = slider.offsetTop;
-            const sliderHeight = window.innerHeight; // End value in ScrollTrigger is +=100%
-            if (scrollPos >= sliderTop + (sliderHeight * 0.5)) {
+            const sliderHeight = window.innerHeight; // The pinned duration is set by end: "+=100%"
+
+            // If we are at the very top or in the first half of the slider pin
+            if (scrollPos < sliderTop + (sliderHeight * 0.5)) {
+                current = 'home';
+            }
+            // If we are in the second half of the slider pin
+            else if (scrollPos >= sliderTop + (sliderHeight * 0.5) && scrollPos < sliderTop + sliderHeight + 100) {
                 current = 'about';
             }
         }
 
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('href').includes(current)) {
+            const href = link.getAttribute('href').substring(1); // remove #
+            if (href === current) {
                 link.classList.add('active');
             }
         });
