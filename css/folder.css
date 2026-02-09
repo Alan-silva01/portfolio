@@ -107,28 +107,63 @@
     transform: scale(2.5) translateY(-8px);
 }
 
-.folder.open .paper:nth-child(1) {
-    transform: translate(-250%, -160%);
+/* Peeking state: Papers are nested inside the folder pocket */
+.folder.open .paper:nth-child(1),
+.folder:not(.open):hover .paper:nth-child(1) {
+    transform: translate(-150%, -40%) rotate(-8deg);
+    opacity: 1;
+    pointer-events: auto;
     z-index: 4;
 }
 
-.folder.open .paper:nth-child(2) {
-    transform: translate(-116%, -195%);
+.folder.open .paper:nth-child(2),
+.folder:not(.open):hover .paper:nth-child(2) {
+    transform: translate(-90%, -60%) rotate(-2deg);
+    opacity: 1;
+    pointer-events: auto;
     z-index: 4;
 }
 
-.folder.open .paper:nth-child(3) {
-    transform: translate(16%, -195%);
+.folder.open .paper:nth-child(3),
+.folder:not(.open):hover .paper:nth-child(3) {
+    transform: translate(-10%, -60%) rotate(2deg);
+    opacity: 1;
+    pointer-events: auto;
     z-index: 4;
 }
 
-.folder.open .paper:nth-child(4) {
-    transform: translate(150%, -160%);
+.folder.open .paper:nth-child(4),
+.folder:not(.open):hover .paper:nth-child(4) {
+    transform: translate(50%, -40%) rotate(8deg);
+    opacity: 1;
+    pointer-events: auto;
     z-index: 4;
 }
 
-.folder.open .folder__front {
-    transform: skew(15deg) scaleY(0.6);
+/* Fly-out state: Triggered on click before opening modal */
+.paper.fly-out:nth-child(1) {
+    transform: translate(-250%, -160%) rotate(-15deg) scale(1.1) !important;
+    z-index: 1000 !important;
+}
+
+.paper.fly-out:nth-child(2) {
+    transform: translate(-116%, -195%) rotate(-5deg) scale(1.1) !important;
+    z-index: 1000 !important;
+}
+
+.paper.fly-out:nth-child(3) {
+    transform: translate(16%, -195%) rotate(5deg) scale(1.1) !important;
+    z-index: 1000 !important;
+}
+
+.paper.fly-out:nth-child(4) {
+    transform: translate(150%, -160%) rotate(15deg) scale(1.1) !important;
+    z-index: 1000 !important;
+}
+
+.paper.fly-out {
+    opacity: 1 !important;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .folder.open .folder__front.right {
