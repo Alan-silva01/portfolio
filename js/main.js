@@ -147,6 +147,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) closeModal();
     });
 
+    // Keyboard Navigation for Modal
+    document.addEventListener('keydown', (e) => {
+        if (!modal.classList.contains('active')) return;
+
+        if (e.key === 'ArrowRight') {
+            navigate('next');
+        } else if (e.key === 'ArrowLeft') {
+            navigate('prev');
+        } else if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+
     // Intersection Observer for entrance animations
     const revealOptions = {
         threshold: 0.15,
