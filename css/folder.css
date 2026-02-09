@@ -10,11 +10,30 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 80vh;
+    min-height: 100vh;
+    padding-top: 2rem;
+    scroll-margin-top: 80px;
+}
+
+#projects .section-header {
+    margin-bottom: 2rem;
+}
+
+.folders-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 350px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    padding-top: 220px;
+    padding-bottom: 60px;
 }
 
 .folder-container {
-    height: 600px;
+    height: 300px;
+    /* Compacted height */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,23 +41,12 @@
     width: 100%;
 }
 
-.folders-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 450px;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    padding-top: 200px;
-}
-
 .folder-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    /* Reduced to bring labels closer */
+    gap: 15px;
+    /* Labels closer to folders */
     position: relative;
     z-index: 1;
     transition: z-index 0.3s;
@@ -100,25 +108,22 @@
 }
 
 .folder.open .paper:nth-child(1) {
-    transform: translate(-125%, -80%) rotateZ(-15deg);
-    z-index: 3;
+    transform: translate(-250%, -130%);
+    z-index: 4;
 }
 
 .folder.open .paper:nth-child(2) {
-    transform: translate(25%, -80%) rotateZ(15deg);
-    height: 80%;
-    z-index: 6;
+    transform: translate(-116%, -165%);
+    z-index: 4;
 }
 
 .folder.open .paper:nth-child(3) {
-    transform: translate(-50%, -125%) rotateZ(0deg);
-    height: 90%;
-    z-index: 5;
+    transform: translate(16%, -165%);
+    z-index: 4;
 }
 
 .folder.open .paper:nth-child(4) {
-    transform: translate(-10%, -100%) rotateZ(-5deg);
-    height: 85%;
+    transform: translate(150%, -130%);
     z-index: 4;
 }
 
@@ -151,6 +156,28 @@
     border-radius: 5px 5px 0 0;
 }
 
+/* Detail icon on tab circle */
+.folder__back::before {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    width: 14px;
+    height: 14px;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    z-index: 10;
+    content: '⇪';
+    /* Upwards arrow icon */
+    color: #fff;
+    font-size: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    line-height: 1;
+}
+
 
 .paper {
     position: absolute;
@@ -158,20 +185,33 @@
     bottom: 15%;
     left: 50%;
     transform: translate(-50%, 10%);
-    width: 90px;
-    height: 70px;
-    background: var(--paper-1);
-    border-radius: 6px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 35px;
+    /* Even smaller closed base */
+    height: 35px;
+    background: #fff;
+    border-radius: 4px;
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
+    justify-content: center;
+    gap: 1.5px;
+    padding: 3px;
     box-sizing: border-box;
-    overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    font-family: 'Glacial Indifference', sans-serif !important;
+    cursor: pointer;
+    opacity: 0;
+    /* Hidden when folder is closed */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.folder.open .paper {
+    width: 55px;
+    /* Tiny card, tight to the logo */
+    height: 55px;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .paper:hover {
@@ -181,29 +221,36 @@
 .paper-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    flex: 1;
+    align-items: center;
+    text-align: center;
+    width: 100%;
 }
 
 .paper h4 {
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.5rem;
+    /* Tiny but readable uppercase */
+    font-weight: 800;
     margin: 0;
     color: #000;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 0.2px;
     line-height: 1;
 }
 
 .paper p {
-    font-size: 0.6rem;
-    margin: 2px 0 0 0;
-    color: #666;
-    white-space: nowrap;
+    display: none;
+    /* Hide subtitle as per reference */
 }
 
 .paper img {
-    width: 24px;
-    height: 24px;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 38px;
+    /* High ratio logo-to-card */
     object-fit: contain;
+    margin-bottom: 1px;
 }
 
 .folder__front {
