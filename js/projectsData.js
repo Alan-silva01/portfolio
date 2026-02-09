@@ -38,7 +38,7 @@ const projectsData = {
             'Ranking de performance e melhores clientes',
             'Barras de progresso de vendas em tempo real'
         ],
-        mockup: 'https://res.cloudinary.com/ddhlqymvf/video/upload/v1770636101/Rapidus_1_evwnz2.mp4',
+        mockup: 'https://res.cloudinary.com/ddhlqymvf/video/upload/v1770642880/Rapidus_3375x6000_suqout.mp4',
         type: 'video'
     },
     'nero-crm': {
