@@ -253,10 +253,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 start: "top top",
                 end: "+=100%",
                 pin: true,
-                scrub: 1,
+                scrub: true,
                 snap: {
-                    snapTo: 1,
-                    duration: 0.5,
+                    snapTo: [0, 1],
+                    duration: { min: 0.2, max: 0.5 },
                     delay: 0,
                     ease: "power1.inOut"
                 },
