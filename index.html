@@ -27,7 +27,7 @@
 <body>
 
     <main id="home">
-        <section class="hero">
+        <section id="hero-slider" class="hero">
             <div class="hero-card reveal">
                 <header class="header">
                     <div class="container-fluid flex-between">
@@ -43,43 +43,78 @@
                     </div>
                 </header>
 
-                <div class="container grid-two-cols">
-                    <div class="hero-content">
-                        <div class="hero-title-group reveal">
-                            <span class="vertical-line"></span>
-                            <div>
-                                <h1 class="hero-name">Alan Silva</h1>
-                                <p class="hero-title">Especialista em Soluções de Automação & IA</p>
-                            </div>
-                        </div>
-                        <div class="hero-cta">
-                            <a href="#contact" class="btn-53">
-                                <div class="original">contato</div>
-                                <div class="letters">
-                                    <span>c</span>
-                                    <span>o</span>
-                                    <span>n</span>
-                                    <span>t</span>
-                                    <span>a</span>
-                                    <span>t</span>
-                                    <span>o</span>
+                <div class="hero-slider-container">
+                    <!-- Step 1: Home Content -->
+                    <div id="hero-step-1" class="hero-step active">
+                        <div class="container grid-two-cols">
+                            <div class="hero-content">
+                                <div class="hero-title-group reveal">
+                                    <span class="vertical-line"></span>
+                                    <div>
+                                        <h1 class="hero-name">Alan Silva</h1>
+                                        <p class="hero-title">Especialista em Soluções de Automação & IA</p>
+                                    </div>
                                 </div>
-                            </a>
+                                <div class="hero-cta">
+                                    <a href="#contact" class="btn-53">
+                                        <div class="original">contato</div>
+                                        <div class="letters">
+                                            <span>c</span><span>o</span><span>n</span><span>t</span><span>a</span><span>t</span><span>o</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="grid-placeholder"></div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: About Content -->
+                    <div id="hero-step-2" class="hero-step">
+                        <div class="container grid-two-cols">
+                            <div class="grid-placeholder"></div>
+                            <div class="hero-content about-content">
+                                <div class="hero-title-group">
+                                    <span class="vertical-line"></span>
+                                    <div>
+                                        <h1 class="hero-name">Quem Sou?</h1>
+                                        <p class="hero-title">Alan Ferreira da Silva</p>
+                                    </div>
+                                </div>
+                                <div class="hello-text-hero">
+                                    <p class="highlight">De Investigador Forense a Criador de soluções com IA.</p>
+                                    <p>Minha carreira é um mosaico incomum. Como técnico em automação industrial,
+                                        entendi a força da automação dentro das empresas. Com a formação em Investigação
+                                        Forense e Perícia Criminal, aprendi o rigor da análise e a busca incessante por
+                                        fatos e eficiência. Hoje, uno esses dois mundos para criar ecossistemas de IA
+                                        que transformam negócios.</p>
+                                    <p>Parceiro Certificado do BotConversa e membro das maiores comunidades de automação
+                                        do Brasil (Dinastia e Sem Codar), me especializei em criar soluções que
+                                        "pensam". Meu trabalho é investigar gargalos operacionais e construir sistemas
+                                        que escalam sem depender de esforço manual.</p>
+                                    <p><strong>Sou Alan Ferreira, e ajudo sua empresa a trabalhar de forma
+                                            inteligente.</strong></p>
+                                </div>
+                                <div class="hello-contacts-hero">
+                                    <a href="mailto:alan@intelflux.dev" class="contact-pill-hero">alan@intelflux.dev</a>
+                                    <a href="https://wa.me/5599991372552" class="contact-pill-hero">(99) 99137-2552</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Absolute Positioned Elements -->
-                <div class="hero-image-container">
+                <!-- Shared Image (Animated via JS) -->
+                <div class="hero-image-container" id="hero-photo-wrapper">
                     <img loading="lazy"
                         src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
                         alt="Alan Silva" class="profile-photo">
                 </div>
 
+                <!-- Shared Sidebar (Animated via JS) -->
                 <div class="decorative-bars">
-                    <div class="bar bar-orange"></div>
-                    <div class="bar bar-grey"></div>
-                    <div class="bar bar-grey"></div>
+                    <div class="bar bar-orange" id="bar-1"></div>
+                    <div class="bar bar-grey" id="bar-2"></div>
+                    <div class="bar bar-grey" id="bar-3"></div>
                 </div>
 
                 <a href="#projects" class="scroll-indicator">
@@ -94,47 +129,13 @@
                 </a>
             </div>
         </section>
-
-        <section id="about" class="about-section section-padding">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2 class="section-title">Por Que Empresários Confiam em Mim?</h2>
-                    <p class="section-subtitle">Soluções que transformam processos complexos em fluxos inteligentes.</p>
-                </div>
-                <div class="cards-grid">
-                    <div class="value-card reveal">
-                        <div class="card-icon">🎓</div>
-                        <h3>Expertise Comprovada</h3>
-                        <p>Graduado em Investigação Forense e Perícia Criminal, com formação técnica em Automações
-                            Industriais.</p>
-                    </div>
-                    <div class="value-card reveal">
-                        <div class="card-icon">💰</div>
-                        <h3>Foco em ROI</h3>
-                        <p>Entrego soluções que geram receita e reduzem custos, impactando diretamente o faturamento.
-                        </p>
-                    </div>
-                    <div class="value-card reveal">
-                        <div class="card-icon">🔧</div>
-                        <h3>Solução Completa</h3>
-                        <p>Da concepção à implantação: Dashboards, Automações N8N, Agentes de IA e CRM personalizado.
-                        </p>
-                    </div>
-                    <div class="value-card reveal">
-                        <div class="card-icon">🚀</div>
-                        <h3>Experiência Real</h3>
-                        <p>Fundador de 3 SaaS em operação: ZAPDIN, UPZY e NERO CRM. Sei o que é criar produtos
-                            escaláveis.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div id="about"></div>
 
         <section id="projects" class="projects-section section-padding">
             <div class="container">
                 <div class="section-header reveal">
                     <h2 class="section-title">Sistemas e Agentes</h2>
-                    <p class="section-subtitle">Sistemas proprietários resolvendo problemas reais no mercado.</p>
+                    <p class="section-subtitle">Sistemas personalizados resolvendo problemas reais no mercado.</p>
                 </div>
                 <div class="folders-wrapper reveal">
                     <!-- Soluções Folder -->

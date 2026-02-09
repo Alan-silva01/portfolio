@@ -235,8 +235,8 @@ a {
     right: 0;
     /* Align to the right edge */
     bottom: 0;
-    width: 65%;
-    /* Wider to allow overlap with text */
+    width: 50%;
+    /* Adjusted to exactly half of the grid */
     height: 100%;
     display: flex;
     justify-content: flex-end;
@@ -378,54 +378,219 @@ a {
 }
 
 .projects-section .section-title {
-    font-size: 2.5rem !important;
+    font-size: 4.5rem !important;
+    /* Maior */
+    color: #000000 !important;
+    /* Preto */
+    font-weight: 800 !important;
     margin-bottom: 0.5rem !important;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
-/* Why Hire Me Cards */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2.5rem;
+.projects-section .section-header.active .section-title {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.value-card {
-    background: #141414;
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: var(--transition-smooth);
-    text-align: center;
-}
-
-.value-card:hover {
-    transform: translateY(-15px);
-    border-color: var(--accent-color);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-}
-
-.card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.value-card h3 {
+.projects-section .section-subtitle {
+    color: #444444 !important;
+    /* Cinza escuro/médio para contraste no fundo cinza */
     font-size: 1.4rem;
     font-weight: 400;
-    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+    transition-delay: 0.3s;
 }
 
-.value-card p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
+.projects-section .section-header.active .section-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* About Hello Section */
+.about-hello {
+    background: #080808;
+    position: relative;
+    overflow: hidden;
+}
+
+.hello-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hello-photo-card {
+    border-radius: 10px;
+    transition: var(--transition-smooth);
+    animation: float 12s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(1deg);
+    }
+}
+
+.hello-photo-card:hover {
+    animation-play-state: paused;
+    transform: scale(1.03);
+}
+
+.photo-wrapper {
+    width: 100%;
+    aspect-ratio: 1/1.2;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* About Hero Section (Second Hero) */
+.about-hero {
+    margin-top: 4rem;
+}
+
+.hero-slider-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.hero-step {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.hero-step.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.about-content {
+    padding-top: 4rem;
+    /* Desce mais o texto */
+}
+
+.hello-text-hero p {
     line-height: 1.6;
 }
 
-/* Project Cards */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 3rem;
+.hero-slider-container .grid-two-cols {
+    grid-template-columns: 1fr 1fr;
+    /* Força 50/50 em ambos os passos */
+    align-items: center;
+}
+
+.grid-placeholder {
+    width: 100%;
+    min-height: 1px;
+}
+
+/* Fix: Remove any floating animation from previous attempts */
+.profile-photo {
+    animation: none !important;
+}
+
+#hero-photo-wrapper {
+    z-index: 2;
+    transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.decorative-bars .bar {
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.bar.active {
+    background-color: var(--accent-color) !important;
+    transform: scaleX(1.2);
+}
+
+.hello-text-hero {
+    margin-top: 2rem;
+    color: #a0a0a0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+.hello-text-hero p {
+    margin-bottom: 1rem;
+}
+
+.hello-text-hero .highlight {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.hello-contacts-hero {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact-pill-hero {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.contact-pill-hero:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px var(--accent-glow);
+}
+
+.decorative-bars.left {
+    right: auto;
+    left: 20px;
+}
+
+@media (max-width: 968px) {
+    .about-card {
+        text-align: center;
+        gap: 3rem;
+    }
+
+    .about-image {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        left: 0;
+        margin-bottom: 2rem;
+    }
 }
 
 .project-card {

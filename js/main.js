@@ -208,13 +208,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         let current = '';
+        const scrollPos = window.pageYOffset;
+
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
+            if (scrollPos >= (sectionTop - sectionHeight / 3)) {
                 current = section.getAttribute('id');
             }
         });
+
+        // Special case for "Quem sou" (About) inside the Hero Slider
+        const slider = document.getElementById('hero-slider');
+        if (slider) {
+            const sliderTop = slider.offsetTop;
+            const sliderHeight = window.innerHeight; // End value in ScrollTrigger is +=100%
+            if (scrollPos >= sliderTop + (sliderHeight * 0.5)) {
+                current = 'about';
+            }
+        }
 
         navLinks.forEach(link => {
             link.classList.remove('active');
@@ -223,4 +235,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Interactive Hero Slider (Home + About)
+    const heroSlider = document.getElementById('hero-slider');
+    if (heroSlider && typeof gsap !== 'undefined') {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: heroSlider,
+                start: "top top",
+                end: "+=100%",
+                pin: true,
+                scrub: 1,
+                anticipatePin: 1
+            }
+        });
+
+        // Step 1 fades out, Step 2 fades in
+        tl.to('#hero-step-1', { autoAlpha: 0, duration: 0.5 }, 0)
+            .to('.scroll-indicator', { autoAlpha: 0, duration: 0.3 }, 0)
+            .fromTo('#hero-step-2',
+                { autoAlpha: 0 },
+                { autoAlpha: 1, duration: 0.5 }, 0.5)
+
+            // Photo moves exactly to the left column (where name was)
+            .to('#hero-photo-wrapper', {
+                xPercent: -100,
+                duration: 1,
+                ease: "power2.inOut"
+            }, 0)
+
+            // Sidebar Bars transition
+            .to('#bar-1', { backgroundColor: '#333333', duration: 0.3 }, 0)
+            .to('#bar-2', { backgroundColor: '#ff6a00', duration: 0.3 }, 0.2);
+    }
+
+    // Fix Navigation for "Quem sou"
+    const aboutNavLink = document.querySelector('a[href="#about"]');
+    if (aboutNavLink) {
+        aboutNavLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const trigger = document.getElementById('hero-slider');
+            if (trigger) {
+                // Scroll to the end of the pin to show Step 2
+                const scrollPos = trigger.offsetTop + window.innerHeight;
+                window.scrollTo({
+                    top: scrollPos,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
 });
