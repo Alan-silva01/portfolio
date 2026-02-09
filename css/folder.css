@@ -108,23 +108,31 @@
 }
 
 .folder.open .paper:nth-child(1) {
-    transform: translate(-250%, -130%);
+    transform: translate(-150%, -45%) rotate(-8deg);
     z-index: 4;
 }
 
 .folder.open .paper:nth-child(2) {
-    transform: translate(-116%, -165%);
+    transform: translate(-90%, -65%) rotate(-2deg);
     z-index: 4;
 }
 
 .folder.open .paper:nth-child(3) {
-    transform: translate(16%, -165%);
+    transform: translate(-10%, -65%) rotate(2deg);
     z-index: 4;
 }
 
 .folder.open .paper:nth-child(4) {
-    transform: translate(150%, -130%);
+    transform: translate(50%, -45%) rotate(8deg);
     z-index: 4;
+}
+
+/* Exit animation for when paper is clicked */
+.paper.exit-animation {
+    transform: translate(-50%, -500%) rotate(0deg) scale(2) !important;
+    opacity: 0 !important;
+    transition: all 0.6s cubic-bezier(0.5, 0, 0, 1.2) !important;
+    z-index: 1000 !important;
 }
 
 .folder.open .folder__front {
@@ -186,7 +194,6 @@
     left: 50%;
     transform: translate(-50%, 10%);
     width: 35px;
-    /* Even smaller closed base */
     height: 35px;
     background: #fff;
     border-radius: 4px;
@@ -195,20 +202,46 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5px;
-    padding: 3px;
+    padding: 3px 3px 3px 12px;
+    /* Extra left padding for holes */
     box-sizing: border-box;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     opacity: 0;
-    /* Hidden when folder is closed */
     pointer-events: none;
     overflow: hidden;
 }
 
+/* Notebook Holes Effect */
+.paper::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 5px;
+    bottom: 5px;
+    width: 4px;
+    /* Series of holes using radial gradient */
+    background-image: radial-gradient(circle, #ddd 1.5px, transparent 1.5px);
+    background-size: 100% 8px;
+    background-position: center;
+    z-index: 2;
+}
+
+/* Vertical Spine Line */
+.paper::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
 .folder.open .paper {
-    width: 55px;
-    /* Tiny card, tight to the logo */
+    width: 65px;
+    /* Slightly wider to accommodate holes */
     height: 55px;
     opacity: 1;
     pointer-events: auto;

@@ -16,9 +16,19 @@ class Folder {
             const paper = e.target.closest('.paper');
             if (this.isOpen && paper) {
                 const projectId = paper.getAttribute('data-project');
-                if (window.openProjectModal) {
-                    window.openProjectModal(projectId);
-                }
+
+                // Add exit animation
+                paper.classList.add('exit-animation');
+
+                // Wait for animation to finish before opening modal
+                setTimeout(() => {
+                    if (window.openProjectModal) {
+                        window.openProjectModal(projectId);
+                    }
+                    // Remove class after modal is triggered so it's ready for next time
+                    setTimeout(() => paper.classList.remove('exit-animation'), 500);
+                }, 600);
+
                 return;
             }
             this.toggle();
