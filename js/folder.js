@@ -1,19 +1,26 @@
 class Folder {
-    constructor(containerSelector) {
+    constructor(containerSelector, options = {}) {
         this.container = document.querySelector(containerSelector);
         if (!this.container) return;
 
         this.folder = this.container.querySelector('.folder');
         this.papers = this.container.querySelectorAll('.paper');
         this.isOpen = false;
+        this.onOpen = options.onOpen || null;
 
         this.init();
     }
 
     init() {
         this.folder.addEventListener('click', (e) => {
-            // Prevent toggling if clicking a paper while open
-            if (this.isOpen && e.target.closest('.paper')) return;
+            const paper = e.target.closest('.paper');
+            if (this.isOpen && paper) {
+                const projectId = paper.getAttribute('data-project');
+                if (window.openProjectModal) {
+                    window.openProjectModal(projectId);
+                }
+                return;
+            }
             this.toggle();
         });
 
@@ -21,13 +28,42 @@ class Folder {
             paper.addEventListener('mousemove', (e) => this.handleMouseMove(e, paper));
             paper.addEventListener('mouseleave', () => this.handleMouseLeave(paper));
         });
+
+        // Close on backdrop click
+        this.container.closest('.folder-wrapper').addEventListener('click', (e) => {
+            if (this.isOpen && e.target.classList.contains('folder-wrapper')) {
+                this.close();
+            }
+        });
     }
 
     toggle() {
         this.isOpen = !this.isOpen;
         this.folder.classList.toggle('open', this.isOpen);
 
+        // Toggle active class on the parent wrapper to manage z-index
+        const wrapper = this.container.closest('.folder-wrapper');
+        if (wrapper) {
+            wrapper.classList.toggle('active', this.isOpen);
+        }
+
+        if (this.isOpen && this.onOpen) {
+            this.onOpen(this);
+        }
+
         if (!this.isOpen) {
+            this.resetAllOffsets();
+        }
+    }
+
+    close() {
+        if (this.isOpen) {
+            this.isOpen = false;
+            this.folder.classList.remove('open');
+            const wrapper = this.container.closest('.folder-wrapper');
+            if (wrapper) {
+                wrapper.classList.remove('active');
+            }
             this.resetAllOffsets();
         }
     }
@@ -59,5 +95,4 @@ class Folder {
     }
 }
 
-// Global init helper
-window.initFolder = (selector) => new Folder(selector);
+window.initFolder = (selector, options) => new Folder(selector, options);

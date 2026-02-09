@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/logoLoop.css">
     <link rel="stylesheet" href="css/folder.css">
+    <link rel="stylesheet" href="css/modal.css">
     <script src="js/logoLoop.js" defer></script>
     <script src="js/folder.js" defer></script>
     <!-- Scripts & Dependencies -->
@@ -132,35 +133,82 @@
         <section id="projects" class="projects-section section-padding">
             <div class="container">
                 <div class="section-header reveal">
-                    <h2 class="section-title">Meus Produtos SaaS</h2>
-                    <p class="section-subtitle">Soluções proprietárias resolvendo problemas reais no mercado.</p>
+                    <h2 class="section-title">Nossas Soluções & Produtos</h2>
+                    <p class="section-subtitle">Sistemas proprietários resolvendo problemas reais no mercado.</p>
                 </div>
-                <div class="folder-container">
-                    <div class="folder" id="projects-folder">
-                        <div class="folder__back">
-                            <!-- Project Papers -->
-                            <div class="paper paper-1">
-                                <h4>ZAPDIN</h4>
-                                <p>Gestão Financeira Inteligente</p>
-                                <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
-                                    alt="ZAPDIN">
+                <div class="folders-wrapper reveal">
+                    <!-- Soluções Folder -->
+                    <div class="folder-wrapper">
+                        <div class="folder-container" id="solucoes-container">
+                            <div class="folder">
+                                <div class="folder__back">
+                                    <div class="paper paper-1" data-project="zapdin">
+                                        <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/v1770584377/zapdin_logo_limq2u.png"
+                                            alt="ZAPDIN">
+                                        <div class="paper-content">
+                                            <h4>ZAPDIN</h4>
+                                            <p>Financeiro IA</p>
+                                        </div>
+                                    </div>
+                                    <div class="paper paper-2" data-project="nero-crm">
+                                        <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/v1770584376/Logotipo_g0wblx.png"
+                                            alt="NERO CRM">
+                                        <div class="paper-content">
+                                            <h4>NERO CRM</h4>
+                                            <p>CRM & Gestão</p>
+                                        </div>
+                                    </div>
+                                    <div class="paper paper-3" data-project="rapidus">
+                                        <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/v1770584375/rapidus_logo_kwa2r2.jpg"
+                                            alt="RAPIDUS">
+                                        <div class="paper-content">
+                                            <h4>RAPIDUS</h4>
+                                            <p>Logística IA</p>
+                                        </div>
+                                    </div>
+                                    <div class="paper paper-4" data-project="upzy">
+                                        <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/v1770636974/Logotipo_Upzy_t4osbh.png"
+                                            alt="UPZY">
+                                        <div class="paper-content">
+                                            <h4>UPZY</h4>
+                                            <p>Metas & Vendas</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder__front"></div>
+                                    <div class="folder__front right"></div>
+                                </div>
                             </div>
-                            <div class="paper paper-2">
-                                <h4>UPZY</h4>
-                                <p>Performance de Vendas Mobile</p>
-                                <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
-                                    alt="UPZY">
-                            </div>
-                            <div class="paper paper-3">
-                                <h4>NERO CRM</h4>
-                                <p>CRM & Automação Completa</p>
-                                <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
-                                    alt="NERO CRM">
-                            </div>
-                            <!-- Folder Parts -->
-                            <div class="folder__front"></div>
-                            <div class="folder__front right"></div>
                         </div>
+                        <span class="folder-label">Soluções</span>
+                    </div>
+
+                    <!-- Agentes Folder -->
+                    <div class="folder-wrapper">
+                        <div class="folder-container" id="agentes-container">
+                            <div class="folder">
+                                <div class="folder__back">
+                                    <div class="paper paper-1" data-project="agente-vendas">
+                                        <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
+                                            alt="AGENT">
+                                        <div class="paper-content">
+                                            <h4>VENDAS</h4>
+                                            <p>IA Comercial</p>
+                                        </div>
+                                    </div>
+                                    <div class="paper paper-2" data-project="agente-suporte">
+                                        <img src="https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png"
+                                            alt="AGENT">
+                                        <div class="paper-content">
+                                            <h4>SUPORTE</h4>
+                                            <p>SAC 24h IA</p>
+                                        </div>
+                                    </div>
+                                    <div class="folder__front"></div>
+                                    <div class="folder__front right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="folder-label">Agentes</span>
                     </div>
                 </div>
             </div>
@@ -557,6 +605,28 @@
         });
 
     </script>
+    <div id="project-modal" class="project-modal">
+        <div class="modal-container">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-grid">
+                <div class="modal-media" id="modal-media">
+                    <!-- Dynamic Content -->
+                </div>
+                <div class="modal-info">
+                    <span class="modal-tag">Projeto SaaS</span>
+                    <h2 class="modal-title" id="modal-title">Projeto</h2>
+                    <p class="modal-subtitle" id="modal-subtitle">Subtítulo do projeto</p>
+                    <div class="modal-description" id="modal-description">
+                        Descrição detalhada aqui.
+                    </div>
+                    <ul class="modal-features" id="modal-features">
+                        <!-- Dynamic Features -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="/js/airplane.js"></script>
     <script type="module" src="/js/main.js"></script>
 </body>
