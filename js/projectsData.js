@@ -83,6 +83,28 @@ const projectsData = {
         ],
         mockup: 'https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png',
         type: 'image'
+    },
+    'clinic-ai': {
+        tag: 'AGENTE IA E AUTOMACAO',
+        title: 'ClinicAI',
+        subtitle: 'Agente de Clínicas Humanizado',
+        description: 'Agente de clínicas que atende de forma humanizada (entende texto, áudio e imagem). Envia áudios personalizados e humanos. Faz follow-up e upsell (ex: reativação de limpeza após 6 meses). Integrado com gateway de pagamentos Asaas: cria cliente, gera Pix e confirma pagamento real no banco (sem risco de comprovante falso).',
+        features: [
+            'Atendimento Humanizado (Texto, Áudio, Imagem)',
+            'Envio de Áudios Personalizados',
+            'Follow-up & Upsell Automático (ex: Recall de 6 meses)',
+            'Integração Financeira Completa (Asaas - Pix/Boleto)',
+            'Validação Real de Pagamento (Anti-fraude)'
+        ],
+        gallery: [
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.07.48_PM_luxhfs.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660533/Captura_de_Tela_2026-02-09_a%CC%80s_3.07.57_PM_urxq5d.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.08.05_PM_ezmvpx.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.08.22_PM_y2csyo.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.08.29_PM_rhzwxp.png'
+        ],
+        type: 'image',
+        displayType: 'desktop'
     }
 };
 
