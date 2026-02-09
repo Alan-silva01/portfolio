@@ -29,68 +29,110 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDescription = document.getElementById('modal-description');
     const modalFeatures = document.getElementById('modal-features');
     const modalGrid = document.querySelector('.modal-grid');
+    const modalPrev = document.getElementById('modal-prev');
+    const modalNext = document.getElementById('modal-next');
 
-    window.openProjectModal = (projectId) => {
+    // Projects Order for Navigation
+    const projectOrder = ['zapdin', 'upzy', 'rapidus', 'nero-crm', 'agente-vendas', 'agente-suporte'];
+    let currentProjectId = null;
+
+    const updateModalContent = (projectId, direction = 'next') => {
         const data = projectsData[projectId];
         if (!data) return;
 
-        // Set layout type
-        if (data.displayType === 'desktop') {
-            modalGrid.classList.add('desktop-layout');
-        } else {
-            modalGrid.classList.remove('desktop-layout');
-        }
+        currentProjectId = projectId;
 
-        // Populate Content
-        modalTitle.textContent = data.title;
-        modalSubtitle.textContent = data.subtitle;
-        modalDescription.textContent = data.description;
+        // Apply transition animation
+        modalGrid.style.opacity = '0';
+        modalGrid.style.transform = direction === 'next' ? 'translateX(20px)' : 'translateX(-20px)';
 
-        modalFeatures.innerHTML = data.features
-            .map(feature => `<li>${feature}</li>`)
-            .join('');
+        setTimeout(() => {
+            // Set layout type
+            if (data.displayType === 'desktop') {
+                modalGrid.classList.add('desktop-layout');
+            } else {
+                modalGrid.classList.remove('desktop-layout');
+            }
 
-        // Clear and set loading state
-        modalMedia.innerHTML = '';
-        modalMedia.classList.add('loading');
-        modalMedia.classList.remove('loaded');
+            // Populate Content
+            modalTitle.textContent = data.title;
+            modalSubtitle.textContent = data.subtitle;
+            modalDescription.textContent = data.description;
 
-        if (data.type === 'video') {
-            const video = document.createElement('video');
-            video.src = data.mockup;
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            video.playsInline = true;
+            modalFeatures.innerHTML = data.features
+                .map(feature => `<li>${feature}</li>`)
+                .join('');
 
-            video.oncanplay = () => {
-                modalMedia.classList.remove('loading');
-                modalMedia.classList.add('loaded');
-            };
+            // Clear and set loading state
+            modalMedia.innerHTML = '';
+            modalMedia.classList.add('loading');
+            modalMedia.classList.remove('loaded');
 
-            modalMedia.appendChild(video);
-        } else {
-            const img = document.createElement('img');
-            img.src = data.mockup;
-            img.alt = data.title;
+            if (data.type === 'video') {
+                const video = document.createElement('video');
+                video.src = data.mockup;
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.playsInline = true;
 
-            img.onload = () => {
-                modalMedia.classList.remove('loading');
-                modalMedia.classList.add('loaded');
-            };
+                video.oncanplay = () => {
+                    modalMedia.classList.remove('loading');
+                    modalMedia.classList.add('loaded');
+                };
 
-            modalMedia.appendChild(img);
-        }
+                modalMedia.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = data.mockup;
+                img.alt = data.title;
 
-        // Show Modal
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scroll
+                img.onload = () => {
+                    modalMedia.classList.remove('loading');
+                    modalMedia.classList.add('loaded');
+                };
+
+                modalMedia.appendChild(img);
+            }
+
+            // Update Navigation Buttons visibility/state
+            const currentIndex = projectOrder.indexOf(projectId);
+            modalPrev.style.display = currentIndex > 0 ? 'flex' : 'none';
+            modalNext.style.display = currentIndex < projectOrder.length - 1 ? 'flex' : 'none';
+
+            // Reset animation
+            modalGrid.style.opacity = '1';
+            modalGrid.style.transform = 'translateX(0)';
+        }, 300);
     };
+
+    window.openProjectModal = (projectId) => {
+        updateModalContent(projectId);
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const navigate = (direction) => {
+        const currentIndex = projectOrder.indexOf(currentProjectId);
+        let nextIndex;
+
+        if (direction === 'next' && currentIndex < projectOrder.length - 1) {
+            nextIndex = currentIndex + 1;
+        } else if (direction === 'prev' && currentIndex > 0) {
+            nextIndex = currentIndex - 1;
+        }
+
+        if (nextIndex !== undefined) {
+            updateModalContent(projectOrder[nextIndex], direction);
+        }
+    };
+
+    modalPrev.addEventListener('click', () => navigate('prev'));
+    modalNext.addEventListener('click', () => navigate('next'));
 
     const closeModal = () => {
         modal.classList.remove('active');
         document.body.style.overflow = '';
-        // Wait for animation to finish before clearing content
         setTimeout(() => {
             if (!modal.classList.contains('active')) {
                 modalMedia.innerHTML = '';

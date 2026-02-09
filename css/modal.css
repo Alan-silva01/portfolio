@@ -73,7 +73,81 @@
     grid-template-columns: 1.2fr 1fr;
     width: 100%;
     height: 100%;
-    transition: grid-template-columns 0.4s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    will-change: transform, opacity;
+}
+
+/* Navigation Buttons */
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.05);
+    /* Slightly more visible background */
+    border: 1px solid rgba(255, 106, 0, 0.4);
+    /* Border with accent color */
+    border-radius: 50%;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 2100;
+    /* Higher than modal-container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+}
+
+.modal-nav:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-50%) scale(1.15);
+    box-shadow: 0 0 30px var(--accent-glow);
+}
+
+.modal-nav.prev {
+    /* Position exactly on the edge of the 1200px max-width container or screen edge */
+    left: calc(50% - 600px - 30px);
+}
+
+.modal-nav.next {
+    right: calc(50% - 600px - 30px);
+}
+
+/* Ensure buttons don't leave the screen on medium displays */
+@media (max-width: 1360px) {
+    .modal-nav.prev {
+        left: 20px;
+    }
+
+    .modal-nav.next {
+        right: 20px;
+    }
+}
+
+.nav-arrow {
+    margin-top: -4px;
+}
+
+@media (max-width: 1100px) {
+    .modal-nav {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        background: rgba(0, 0, 0, 0.5);
+        /* Higher contrast on mobile */
+    }
+
+    .modal-nav.prev {
+        left: 15px;
+    }
+
+    .modal-nav.next {
+        right: 15px;
+    }
 }
 
 .modal-grid.desktop-layout {
