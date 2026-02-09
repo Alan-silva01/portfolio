@@ -828,7 +828,11 @@ footer {
 .tools-section {
     position: relative;
     z-index: 10;
-    background-color: var(--bg-card);
+    /* Smooth gradient transition from gray to black */
+    background: linear-gradient(to bottom,
+            var(--bg-page) 0%,
+            var(--bg-card) 100px,
+            var(--bg-card) 100%);
     /* Define a view timeline for this specific section */
     view-timeline: --tools-scroll y;
 }
