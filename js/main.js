@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDescription = document.getElementById('modal-description');
     const modalFeatures = document.getElementById('modal-features');
     const modalGrid = document.querySelector('.modal-grid');
+    const modalTag = document.querySelector('.modal-tag');
     const modalPrev = document.getElementById('modal-prev');
     const modalNext = document.getElementById('modal-next');
 
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = data.title;
             modalSubtitle.textContent = data.subtitle;
             modalDescription.textContent = data.description;
+            modalTag.textContent = data.tag || 'PROJETO';
 
             modalFeatures.innerHTML = data.features
                 .map(feature => `<li>${feature}</li>`)
