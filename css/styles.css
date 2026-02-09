@@ -203,10 +203,7 @@ a {
 /* Move button towards center */
 .hero-cta {
     margin-left: 5.1rem;
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    align-items: center;
+    /* Ajuste este valor para mover mais ou menos */
 }
 
 /* Buttons */
