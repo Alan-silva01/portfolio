@@ -16,28 +16,16 @@ class Folder {
             const paper = e.target.closest('.paper');
             if (this.isOpen && paper) {
                 const projectId = paper.getAttribute('data-project');
-
-                // Add fly-out animation (dramatic extract)
-                paper.classList.add('fly-out');
-
-                // Wait for animation to finish before opening modal
-                setTimeout(() => {
-                    if (window.openProjectModal) {
-                        window.openProjectModal(projectId);
-                    }
-                    // Remove class after modal is triggered so it's ready for next time
-                    setTimeout(() => paper.classList.remove('fly-out'), 500);
-                }, 500);
-
+                if (window.openProjectModal) {
+                    window.openProjectModal(projectId);
+                }
                 return;
             }
             this.toggle();
         });
 
-        // Hover to open
-        this.folder.addEventListener('mouseenter', () => {
-            if (!this.isOpen) this.toggle();
-        });
+        // Hover effect is now handled purely by CSS for the "peek" inside state.
+        // Click triggers the "open" state which flies the papers out.
 
         this.container.addEventListener('mouseleave', () => {
             if (this.isOpen) this.close();
