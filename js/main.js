@@ -254,6 +254,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 end: "+=100%",
                 pin: true,
                 scrub: 1,
+                snap: {
+                    snapTo: 1,
+                    duration: 0.5,
+                    delay: 0,
+                    ease: "power1.inOut"
+                },
                 anticipatePin: 1
             }
         });
