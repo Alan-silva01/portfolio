@@ -88,13 +88,13 @@ const projectsData = {
         tag: 'AGENTE IA E AUTOMACAO',
         title: 'ClinicAI',
         subtitle: 'Agente de Clínicas Humanizado',
-        description: 'Agente de clínicas que atende de forma humanizada (entende texto, áudio e imagem). Envia áudios personalizados e humanos. Faz follow-up e upsell (ex: reativação de limpeza após 6 meses). Integrado com gateway de pagamentos Asaas: cria cliente, gera Pix e confirma pagamento real no banco (sem risco de comprovante falso).',
+        description: 'Agente de clínicas que atende de forma humanizada (entende texto, áudio e imagem). Envia áudios personalizados e humanos. Faz follow-up e upsell (ex: reativação de limpeza após 6 meses). Integrado com gateway de pagamentos Asaas e Google Calendar. Notifica humanos com um resumo detalhado quando a intervenção é necessária.',
         features: [
             'Atendimento Humanizado (Texto, Áudio, Imagem)',
             'Envio de Áudios Personalizados',
             'Follow-up & Upsell Automático (ex: Recall de 6 meses)',
-            'Integração Financeira Completa (Asaas - Pix/Boleto)',
-            'Validação Real de Pagamento (Anti-fraude)'
+            'Integração Asaas (Pagamentos) & Google Calendar',
+            'Notificação para Humano com Resumo de Contexto'
         ],
         gallery: [
             'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.07.48_PM_luxhfs.png',
@@ -102,6 +102,28 @@ const projectsData = {
             'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.08.05_PM_ezmvpx.png',
             'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.08.22_PM_y2csyo.png',
             'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770660534/Captura_de_Tela_2026-02-09_a%CC%80s_3.08.29_PM_rhzwxp.png'
+        ],
+        type: 'image',
+        displayType: 'desktop'
+    },
+    'rastrei-ai': {
+        tag: 'AGENTE IA E AUTOMACAO',
+        title: 'RastreiAI',
+        subtitle: 'Automação para Rastreamento Veicular',
+        description: 'Agente especializado em captação de dados, quebra de objeções, agendamento de instalação e manutenção. Gera pagamentos de mensalidades via Asaas, faz follow-up inteligente e integra-se ao Google Calendar. Notifica humanos com um resumo detalhado quando a intervenção é necessária.',
+        features: [
+            'Captação de Dados & Quebra de Objeções',
+            'Agendamento de Instalação/Manutenção (Google Calendar)',
+            'Gestão de Mensalidades & Cobrança (Asaas)',
+            'Follow-up Inteligente (Leads Incompletos)',
+            'Transbordo para Humano com Resumo Contextual'
+        ],
+        gallery: [
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.12.55_AM_xrv6j9.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.13.13_AM_o1ql8v.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.13.29_AM_bpvhfb.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.13.05_AM_zml5ap.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.13.22_AM_u79g0p.png'
         ],
         type: 'image',
         displayType: 'desktop'

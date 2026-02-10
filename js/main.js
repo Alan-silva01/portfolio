@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalNext = document.getElementById('modal-next');
 
     // Projects Order for Navigation
-    const projectOrder = ['zapdin', 'upzy', 'rapidus', 'nero-crm', 'agente-vendas', 'agente-suporte', 'clinic-ai'];
+    const projectOrder = ['zapdin', 'upzy', 'rapidus', 'nero-crm', 'agente-vendas', 'agente-suporte', 'clinic-ai', 'rastrei-ai'];
     let currentProjectId = null;
 
     const updateModalContent = (projectId, direction = 'next') => {
@@ -120,17 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Carousel State
                     let currentSlide = 0;
-                    const slides = track.querySelectorAll('img');
                     const dots = dotsContainer.querySelectorAll('.carousel-dot');
                     let autoPlayInterval;
 
                     const showSlide = (index) => {
-                        slides[currentSlide].classList.remove('active');
                         dots[currentSlide].classList.remove('active');
 
-                        currentSlide = (index + slides.length) % slides.length;
+                        currentSlide = (index + data.gallery.length) % data.gallery.length;
 
-                        slides[currentSlide].classList.add('active');
+                        // Slide the track
+                        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
                         dots[currentSlide].classList.add('active');
                     };
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Auto Play
                     const startAutoPlay = () => {
-                        autoPlayInterval = setInterval(nextSlide, 3000); // 3 seconds per slide
+                        autoPlayInterval = setInterval(nextSlide, 6000); // 6 seconds per slide
                     };
 
                     const resetAutoPlay = () => {
