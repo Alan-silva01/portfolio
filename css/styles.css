@@ -681,48 +681,79 @@ a {
     background-color: #ff8533;
 }
 
-.contact-footer-grid {
+/* ====================================
+   Site Footer
+   ==================================== */
+.site-footer {
+    background: #0a0a0a;
+    padding: 3rem 0 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.footer-content {
     display: flex;
-    justify-content: center;
-    gap: 6rem;
-    flex-wrap: wrap;
-    margin-top: 3rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
-.contact-footer-item {
-    text-align: center;
+.footer-buttons {
+    display: flex;
+    gap: 1rem;
 }
 
-.contact-footer-label {
-    display: block;
-    font-size: 0.8rem;
+.footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-btn:hover {
+    border-color: var(--accent-color);
     color: var(--accent-color);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
+    background: rgba(255, 106, 0, 0.05);
+    transform: translateY(-2px);
 }
 
-.contact-footer-value {
-    font-size: 1.3rem;
+.footer-btn svg {
+    flex-shrink: 0;
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.75rem;
     font-weight: 300;
-    color: var(--text-primary);
-    transition: var(--transition-fast);
-}
-
-.contact-footer-value:hover {
-    color: var(--accent-color);
-    opacity: 0.8;
+    margin: 0;
 }
 
 @media (max-width: 768px) {
-    .contact-footer-grid {
-        gap: 2.5rem;
-        flex-direction: column;
+    .site-footer {
+        padding: 2rem 0 1.5rem;
     }
 
-    .cta-main-btn {
-        padding: 1rem 2rem;
-        font-size: 0.95rem;
+    .footer-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .footer-btn {
+        justify-content: center;
         width: 100%;
     }
 }
@@ -1443,7 +1474,7 @@ footer {
     --airplane-padding: 10vmin;
     --airplane-color-bg: #D0CBC7;
     position: relative;
-    background-color: var(--airplane-color-bg);
+    background: linear-gradient(to bottom, var(--airplane-color-bg) 0%, var(--airplane-color-bg) 70%, #0a0a0a 100%);
     overflow-x: hidden;
     font-family: 'Glacial Indifference', sans-serif !important;
 }
@@ -1494,7 +1525,9 @@ footer {
     text-align: center;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 35vh;
+    padding-top: 25vh;
+    min-height: 70vh !important;
+    padding-bottom: 2vh;
 }
 
 .decolagem-cta {
@@ -2015,37 +2048,6 @@ footer {
         white-space: nowrap !important;
     }
 
-    /* --- CONTACT FOOTER MOBILE --- */
-    .contact-section {
-        padding: 1rem 0 1.5rem !important;
-    }
-
-    .contact-footer-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: space-around !important;
-        gap: 0.5rem !important;
-        margin-top: 1rem !important;
-        width: 100% !important;
-    }
-
-    .contact-footer-item {
-        flex: 1 !important;
-        min-width: 0 !important;
-    }
-
-    .contact-footer-label {
-        font-size: 0.55rem !important;
-        margin-bottom: 0.2rem !important;
-        white-space: nowrap !important;
-    }
-
-    .contact-footer-value {
-        font-size: 0.75rem !important;
-        word-break: break-all !important;
-        display: block !important;
-    }
 }
 
 /* ====================================
@@ -2070,8 +2072,4 @@ footer {
 .btn-airplane-lg {
     padding: 1.2rem 2.5rem;
     font-size: 1.1rem;
-}
-
-.contact-section {
-    padding: 0 0 5rem 0;
 }
