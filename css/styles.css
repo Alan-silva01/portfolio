@@ -1494,7 +1494,7 @@ footer {
     text-align: center;
     align-items: center;
     justify-content: flex-start;
-    padding-top: 15vh;
+    padding-top: 35vh;
 }
 
 .decolagem-cta {
@@ -1740,6 +1740,10 @@ footer {
 
     #airplane-experience .section.up {
         padding-top: 5vh !important;
+    }
+
+    #airplane-experience .section.end {
+        padding-top: 35vh !important;
     }
 }
 
