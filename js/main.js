@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalNext = document.getElementById('modal-next');
 
     // Projects Order for Navigation
-    const projectOrder = ['zapdin', 'upzy', 'rapidus', 'nero-crm', 'agente-vendas', 'agente-suporte', 'clinic-ai', 'rastrei-ai'];
+    const projectOrder = ['zapdin', 'upzy', 'rapidus', 'nero-crm', 'clinic-ai', 'rastrei-ai', 'convert-ai', 'imob-ai'];
     let currentProjectId = null;
 
     const updateModalContent = (projectId, direction = 'next') => {

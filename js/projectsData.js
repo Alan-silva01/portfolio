@@ -56,34 +56,7 @@ const projectsData = {
         type: 'video',
         displayType: 'desktop'
     },
-    'agente-vendas': {
-        tag: 'AGENTE IA',
-        title: 'AGENTE VENDAS',
-        subtitle: 'Prospecção Inteligente 24/7',
-        description: 'Um agente de IA focado em converter leads em vendas através de abordagens humanizadas e persistentes.',
-        features: [
-            'Qualificação automática de leads',
-            'Follow-up inteligente por WhatsApp',
-            'Integração com calendários para agendamento',
-            'Relatórios de taxa de conversão'
-        ],
-        mockup: 'https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png',
-        type: 'image'
-    },
-    'agente-suporte': {
-        tag: 'AGENTE IA',
-        title: 'AGENTE SUPORTE',
-        subtitle: 'Atendimento ao Cliente via IA',
-        description: 'Agente especializado em suporte técnico e dúvidas frequentes, reduzindo a carga de atendimento humano.',
-        features: [
-            'Respostas instantâneas baseadas em sua KB',
-            'Triagem de tickets complexos',
-            'Atendimento multicanal',
-            'Análise de sentimento do cliente'
-        ],
-        mockup: 'https://res.cloudinary.com/ddhlqymvf/image/upload/f_auto,q_auto/v1770467774/Portfolio_Alan_nsomqs.png',
-        type: 'image'
-    },
+
     'clinic-ai': {
         tag: 'AGENTE IA E AUTOMACAO',
         title: 'ClinicAI',
@@ -124,6 +97,47 @@ const projectsData = {
             'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.13.29_AM_bpvhfb.png',
             'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.13.05_AM_zml5ap.png',
             'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770722041/Captura_de_Tela_2026-02-10_a%CC%80s_8.13.22_AM_u79g0p.png'
+        ],
+        type: 'image',
+        displayType: 'desktop'
+    },
+    'convert-ai': {
+        tag: 'AGENTE IA E AUTOMACAO',
+        title: 'ConvertAI',
+        subtitle: 'Agente SDR de Alta Performance',
+        description: 'Agente especializado em qualificação de leads, captação de dados e quebra de objeções. Atendimento 100% humanizado com suporte a áudio, imagem e texto. Realiza follow-up inteligente e transbordo para humanos quando detecta oportunidade real.',
+        features: [
+            'Qualificação de Leads & Captação',
+            'Quebra de Objeções em Tempo Real',
+            'Atendimento Humanizado (Áudio, Texto e Imagem)',
+            'Follow-up Inteligente e Persistente',
+            'Intervenção Humana sob demanda'
+        ],
+        gallery: [
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770723193/Captura_de_Tela_2026-02-10_a%CC%80s_8.32.49_AM_ntelp5.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770723149/Captura_de_Tela_2026-02-10_a%CC%80s_8.30.37_AM_zhpprt.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770723149/Captura_de_Tela_2026-02-10_a%CC%80s_8.30.31_AM_hb9zor.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770723149/Captura_de_Tela_2026-02-10_a%CC%80s_8.30.43_AM_y7i9su.png'
+        ],
+        type: 'image',
+        displayType: 'desktop'
+    },
+    'imob-ai': {
+        tag: 'AGENTE IA E AUTOMACAO',
+        title: 'ImobAi',
+        subtitle: 'Inteligência para Imobiliárias',
+        description: 'Agente especializado em qualificação de leads imobiliários. Identifica o perfil de busca, consulta o banco de dados em tempo real e envia opções com fotos. Possui sistema de alerta: se um imóvel compatível entrar no banco depois, o agente reativa o lead automaticamente. Realiza follow-up e agendamento com consultores.',
+        features: [
+            'Qualificação Profunda de Perfil',
+            'Busca Automatizada em Banco de Dados',
+            'Envio de Fotos & Ficha Técnica via WhatsApp',
+            'Alertas de Novos Imóveis (Reativação de Leads)',
+            'Agendamento com Consultores Responsáveis'
+        ],
+        gallery: [
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770723616/Captura_de_Tela_2026-02-10_a%CC%80s_8.38.16_AM_gfizuq.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770723616/Captura_de_Tela_2026-02-10_a%CC%80s_8.36.49_AM_vawl9q.png',
+            'https://res.cloudinary.com/ddhlqymvf/image/upload/v1770723616/Captura_de_Tela_2026-02-10_a%CC%80s_8.39.43_AM_gyhvda.png'
         ],
         type: 'image',
         displayType: 'desktop'
