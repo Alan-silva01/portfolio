@@ -1999,33 +1999,38 @@ footer {
     }
 
     .airplane-cta-buttons {
-        flex-direction: column !important;
-        gap: 1rem !important;
-        padding: 0 1rem !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        padding: 0 0.5rem !important;
     }
 
     .airplane-cta-buttons .cta-main-btn,
     .airplane-cta-buttons .btn-airplane-secondary {
-        width: 100% !important;
-        text-align: center !important;
-        padding: 1rem 2rem !important;
-        font-size: 1rem !important;
+        width: auto !important;
+        flex: 1 !important;
+        min-width: 0 !important;
+        padding: 0.8rem 1rem !important;
+        font-size: 0.8rem !important;
+        white-space: nowrap !important;
     }
 
     /* --- CONTACT FOOTER MOBILE --- */
     .contact-section {
-        padding: 2rem 0 3rem !important;
+        padding: 1rem 0 1.5rem !important;
     }
 
     .contact-footer-grid {
-        gap: 1.5rem !important;
+        gap: 1rem !important;
+        margin-top: 1rem !important;
     }
 
     .contact-footer-label {
-        font-size: 0.7rem !important;
+        font-size: 0.6rem !important;
+        margin-bottom: 0.2rem !important;
     }
 
     .contact-footer-value {
-        font-size: 1.1rem !important;
+        font-size: 0.95rem !important;
     }
 }
