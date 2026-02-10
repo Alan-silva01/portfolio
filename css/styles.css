@@ -1823,6 +1823,10 @@ footer {
         margin-bottom: 0 !important;
         z-index: 1001 !important;
         width: 100% !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
     }
 
     .logo {
@@ -1834,6 +1838,10 @@ footer {
         justify-content: flex-start !important;
         align-items: center !important;
         padding-top: 160px !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
     }
 
     .hero-content {
@@ -1917,7 +1925,11 @@ footer {
     /* About (Step 2) — extra top padding to clear header */
     .about-content {
         padding: 0 1rem !important;
-        padding-top: 350px !important;
+        padding-top: 450px !important;
+        backface-visibility: hidden !important;
+        -webkit-backface-visibility: hidden !important;
+        transform: translateZ(0) !important;
+        -webkit-transform: translateZ(0) !important;
     }
 
     .hello-text-hero p {
