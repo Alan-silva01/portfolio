@@ -136,7 +136,7 @@ a {
 .logo {
     font-size: 1.5rem;
     font-weight: 300;
-    color: #aeaeae;
+    color: #ffffff;
     letter-spacing: 1.3px;
     position: absolute;
     /* Tira o logo do fluxo para não empurrar o menu */
@@ -193,11 +193,19 @@ a {
     color: #c7c7c7;
 }
 
+.about-content .hero-name {
+    font-size: 3.8rem;
+}
+
 .hero-title {
     color: var(--text-secondary);
     font-size: 1.2rem;
     font-weight: 300;
     letter-spacing: 0.2px;
+}
+
+.about-content .hero-title {
+    font-size: 1.1rem;
 }
 
 /* Move button towards center */
@@ -492,8 +500,8 @@ a {
 }
 
 .about-content {
-    padding-top: 4rem;
-    /* Desce mais o texto */
+    padding-top: 6rem;
+    /* Increased for better breathing room */
 }
 
 .hello-text-hero p {
@@ -531,9 +539,9 @@ a {
 }
 
 .hello-text-hero {
-    margin-top: 2rem;
+    margin-top: 1.2rem;
     color: #a0a0a0;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     line-height: 1.6;
     max-width: 500px;
 }
@@ -545,7 +553,7 @@ a {
 .hello-text-hero .highlight {
     color: var(--accent-color);
     font-weight: 700;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .hello-contacts-hero {
@@ -559,9 +567,9 @@ a {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: #fff;
-    padding: 0.8rem 1.5rem;
+    padding: 0.7rem 1.4rem;
     border-radius: 50px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
@@ -1907,7 +1915,7 @@ footer {
         flex-direction: column !important;
         align-items: center !important;
         gap: 0.8rem !important;
-        margin-bottom: 1.5rem !important;
+        margin-bottom: 1rem !important;
     }
 
     .vertical-line {
@@ -1923,6 +1931,14 @@ footer {
     .hero-title {
         font-size: 0.85rem !important;
         text-align: center !important;
+    }
+
+    .about-content .hero-name {
+        font-size: 1.4rem !important;
+    }
+
+    .about-content .hero-title {
+        font-size: 0.7rem !important;
     }
 
     .hero-cta {
@@ -1962,7 +1978,7 @@ footer {
     /* About (Step 2) — extra top padding to clear header */
     .about-content {
         padding: 0 1rem !important;
-        padding-top: 450px !important;
+        padding-top: 350px !important;
         backface-visibility: hidden !important;
         -webkit-backface-visibility: hidden !important;
         transform: translateZ(0) !important;
@@ -1970,12 +1986,12 @@ footer {
     }
 
     .hello-text-hero p {
-        font-size: 0.85rem !important;
+        font-size: 0.75rem !important;
         line-height: 1.6 !important;
     }
 
     .hello-text-hero .highlight {
-        font-size: 1rem !important;
+        font-size: 0.85rem !important;
     }
 
     .hello-contacts-hero {
@@ -1986,7 +2002,7 @@ footer {
 
     .contact-pill-hero {
         padding: 0.4rem 1rem !important;
-        font-size: 0.7rem !important;
+        font-size: 0.6rem !important;
         min-height: 32px;
         display: flex;
         align-items: center;
