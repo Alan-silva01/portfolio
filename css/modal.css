@@ -370,3 +370,74 @@
     background: #ff6a00;
     transform: scale(1.2);
 }
+
+/* === MODAL MOBILE === */
+@media (max-width: 768px) {
+    .modal-container {
+        width: 100%;
+        height: 100vh;
+        border-radius: 0;
+        max-width: 100%;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr !important;
+        grid-template-rows: 35vh 1fr;
+        overflow-y: auto;
+    }
+
+    .modal-media {
+        padding: 20px 10px 10px;
+    }
+
+    .modal-info {
+        padding: 20px;
+    }
+
+    .modal-title {
+        font-size: 1.8rem;
+    }
+
+    .modal-subtitle {
+        font-size: 1rem;
+        margin-bottom: 16px;
+    }
+
+    .modal-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .modal-features li {
+        font-size: 0.85rem;
+    }
+
+    .modal-close {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .modal-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+    }
+
+    .modal-nav.prev {
+        left: 8px;
+    }
+
+    .modal-nav.next {
+        right: 8px;
+    }
+
+    .carousel-prev,
+    .carousel-next {
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+    }
+}

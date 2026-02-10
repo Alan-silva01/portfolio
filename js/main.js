@@ -1,6 +1,25 @@
 import projectsData from './projectsData.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // === HAMBURGER MENU ===
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navMenu = document.querySelector('.nav');
+    if (hamburgerBtn && navMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : '';
+        });
+        // Close menu on nav link click
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
     const marqueeElement = document.getElementById('tech-marquee');
 
     // Initialize LogoLoop safely
