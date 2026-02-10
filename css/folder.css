@@ -101,7 +101,7 @@
     }
 
     .folder-label {
-        color: var(--text-primary, #fff);
+        color: #000 !important;
         font-size: 0.9rem;
     }
 
