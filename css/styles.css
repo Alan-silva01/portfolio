@@ -2021,16 +2021,29 @@ footer {
     }
 
     .contact-footer-grid {
-        gap: 1rem !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-around !important;
+        gap: 0.5rem !important;
         margin-top: 1rem !important;
+        width: 100% !important;
+    }
+
+    .contact-footer-item {
+        flex: 1 !important;
+        min-width: 0 !important;
     }
 
     .contact-footer-label {
-        font-size: 0.6rem !important;
+        font-size: 0.55rem !important;
         margin-bottom: 0.2rem !important;
+        white-space: nowrap !important;
     }
 
     .contact-footer-value {
-        font-size: 0.95rem !important;
+        font-size: 0.75rem !important;
+        word-break: break-all !important;
+        display: block !important;
     }
 }
