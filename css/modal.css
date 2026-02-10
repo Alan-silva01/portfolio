@@ -382,12 +382,13 @@
 
     .modal-grid {
         grid-template-columns: 1fr !important;
-        grid-template-rows: 35vh 1fr;
+        grid-template-rows: 45vh 1fr;
         overflow-y: auto;
     }
 
     .modal-media {
-        padding: 20px 10px 10px;
+        padding: 40px 10px 10px;
+        height: 45vh;
     }
 
     .modal-info {
@@ -421,17 +422,21 @@
     }
 
     .modal-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 22px;
+        top: 22.5vh !important;
+        transform: translateY(-50%) !important;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 20px !important;
+        background: rgba(0, 0, 0, 0.6) !important;
+        border: 1px solid rgba(255, 106, 0, 0.5) !important;
     }
 
     .modal-nav.prev {
-        left: 8px;
+        left: 10px !important;
     }
 
     .modal-nav.next {
-        right: 8px;
+        right: 10px !important;
     }
 
     .carousel-prev,
