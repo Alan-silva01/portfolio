@@ -4,6 +4,12 @@ node_modules/
 # Build output
 dist/
 
+# Backup / scratch files
+*.bak
+*_backup.*
+*_original.*
+*_good*.*
+
 # OS generated files
 .DS_Store
 .DS_Store?

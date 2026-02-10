@@ -2047,3 +2047,31 @@ footer {
         display: block !important;
     }
 }
+
+/* ====================================
+   Extracted Inline Styles
+   ==================================== */
+.desktop-tools {
+    height: 300vh;
+}
+
+.decolagem-subtitle {
+    font-size: clamp(24px, 4vw, 42px);
+    color: var(--text-primary);
+    margin: 6rem 0 0.5rem;
+}
+
+.decolagem-desc {
+    font-size: clamp(16px, 2vw, 20px);
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+}
+
+.btn-airplane-lg {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+.contact-section {
+    padding: 0 0 5rem 0;
+}
