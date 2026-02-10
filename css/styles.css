@@ -657,9 +657,16 @@ a {
 }
 
 /* Contact Section Redesign */
+.contact-section {
+    background-color: #0c0c0c;
+    padding: 2rem 0 4rem !important;
+    position: relative;
+    z-index: 10;
+}
+
 .cta-container {
     text-align: center;
-    margin: 4rem 0 6rem;
+    margin: 1rem 0 3rem;
 }
 
 .cta-main-btn {
@@ -729,10 +736,10 @@ a {
 
 /* Footer */
 footer {
-    padding: 5rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 3rem 0;
+    border-top: none;
     width: 100%;
-    background: #080808;
+    background: #0c0c0c;
     text-align: center;
 }
 
@@ -1035,7 +1042,7 @@ footer {
             var(--bg-page) 0%,
             var(--bg-card) 100px,
             var(--bg-card) calc(100% - 400px),
-            #D0CBC7 100%);
+            #0c0c0c 100%);
     /* Define a view timeline for this specific section */
     view-timeline: --tools-scroll y;
 }
@@ -1441,7 +1448,7 @@ footer {
 /* === AIRPLANE EXPERIENCE (3D transition) === */
 #airplane-experience {
     --airplane-padding: 10vmin;
-    --airplane-color-bg: #D0CBC7;
+    --airplane-color-bg: #0c0c0c;
     position: relative;
     background-color: var(--airplane-color-bg);
     overflow-x: hidden;
@@ -1463,7 +1470,7 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: clamp(20px, 4vw, 32px);
-    background: var(--airplane-color-bg);
+    background: #0c0c0c;
     z-index: 2000;
 }
 
@@ -1495,7 +1502,6 @@ footer {
     align-items: center;
     justify-content: flex-start;
     padding-top: 15vh;
-    /* Subindo mais o texto conforme pedido */
 }
 
 .decolagem-cta {
