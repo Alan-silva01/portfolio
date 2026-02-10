@@ -274,14 +274,18 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: "0px 0px -20px 0px"
     };
 
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 let delay = entry.target.dataset.delay || 0;
-                setTimeout(() => {
+                // Clear any existing timeout to avoid overlaps
+                clearTimeout(entry.target._revealTimeout);
+                entry.target._revealTimeout = setTimeout(() => {
                     entry.target.classList.add('active');
                 }, delay);
-                observer.unobserve(entry.target);
+            } else {
+                clearTimeout(entry.target._revealTimeout);
+                entry.target.classList.remove('active');
             }
         });
     }, revealOptions);
