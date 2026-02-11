@@ -751,18 +751,24 @@ a {
 
 @media (max-width: 768px) {
     .site-footer {
-        padding: 2rem 0 1.5rem;
+        padding: 1rem 0 0.8rem;
+    }
+
+    .footer-content {
+        gap: 0.8rem;
     }
 
     .footer-buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 280px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
     }
 
     .footer-btn {
-        justify-content: center;
-        width: 100%;
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        width: auto;
     }
 }
 
