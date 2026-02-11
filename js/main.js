@@ -372,18 +372,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Interactive Hero Slider (Home + About)
     const heroSlider = document.getElementById('hero-slider');
     if (heroSlider && typeof gsap !== 'undefined') {
+        const isMobile = window.innerWidth <= 768;
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: heroSlider,
                 start: "top top",
                 end: "+=100%",
                 pin: true,
-                scrub: true,
+                scrub: isMobile ? 1.5 : true, // Smoother scrub on mobile to reduce CPU spikes
                 snap: {
                     snapTo: [0, 1],
                     duration: { min: 0.2, max: 0.5 },
                     delay: 0,
-                    ease: "power1.inOut"
+                    ease: "power2.inOut"
                 },
                 anticipatePin: 1
             }
