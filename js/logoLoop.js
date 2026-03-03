@@ -31,17 +31,14 @@ class LogoLoop {
         clone.setAttribute('aria-hidden', 'true');
         this.track.appendChild(clone);
 
-        // Force a reflow to ensure the animation picks up the new variables
-        this.container.style.display = 'none';
-        this.container.offsetHeight; // reflow
-        this.container.style.display = 'block';
-
         // Calculate duration based on speed and width
         const duration = listWidth / this.speed;
 
-        // Set CSS variables for the animation
-        this.container.style.setProperty('--logoloop-duration', `${duration}s`);
-        this.container.style.setProperty('--logoloop-translate-x', `-${listWidth}px`);
+        // Set CSS variables for the animation (batched in rAF to avoid forced reflow)
+        requestAnimationFrame(() => {
+            this.container.style.setProperty('--logoloop-duration', `${duration}s`);
+            this.container.style.setProperty('--logoloop-translate-x', `-${listWidth}px`);
+        });
 
         // Add resize listener only once
         if (!this.resizeAttached) {
