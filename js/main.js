@@ -372,41 +372,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Interactive Hero Slider (Home + About)
     const heroSlider = document.getElementById('hero-slider');
     if (heroSlider && typeof gsap !== 'undefined') {
-        const isMobile = window.innerWidth <= 768;
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: heroSlider,
-                start: "top top",
-                end: "+=100%",
-                pin: true,
-                scrub: isMobile ? 1.5 : true, // Smoother scrub on mobile to reduce CPU spikes
-                snap: {
-                    snapTo: [0, 1],
-                    duration: { min: 0.2, max: 0.5 },
-                    delay: 0,
-                    ease: "power2.inOut"
-                },
-                anticipatePin: 1
-            }
+        // Fix for PageSpeed NO_LCP: wait for initial paint before GSAP pins and mutates DOM
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                const isMobile = window.innerWidth <= 768;
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: heroSlider,
+                        start: "top top",
+                        end: "+=100%",
+                        pin: true,
+                        scrub: isMobile ? 1.5 : true, // Smoother scrub on mobile to reduce CPU spikes
+                        snap: {
+                            snapTo: [0, 1],
+                            duration: { min: 0.2, max: 0.5 },
+                            delay: 0,
+                            ease: "power2.inOut"
+                        },
+                        anticipatePin: 1
+                    }
+                });
+
+                // Step 1 fades out, Step 2 fades in
+                tl.to('#hero-step-1', { autoAlpha: 0, duration: 0.5 }, 0)
+                    .to('.scroll-indicator', { autoAlpha: 0, duration: 0.3 }, 0)
+                    .fromTo('#hero-step-2',
+                        { autoAlpha: 0 },
+                        { autoAlpha: 1, duration: 0.5 }, 0.5)
+
+                    // Photo moves exactly to the left column (where name was)
+                    .to('#hero-photo-wrapper', {
+                        xPercent: -100,
+                        duration: 1,
+                        ease: "power2.inOut"
+                    }, 0)
+
+                    // Sidebar Bars transition
+                    .to('#bar-1', { backgroundColor: '#333333', duration: 0.3 }, 0)
+                    .to('#bar-2', { backgroundColor: '#ff6a00', duration: 0.3 }, 0.2);
+            }, 50); // Small delay to let browser paint
         });
-
-        // Step 1 fades out, Step 2 fades in
-        tl.to('#hero-step-1', { autoAlpha: 0, duration: 0.5 }, 0)
-            .to('.scroll-indicator', { autoAlpha: 0, duration: 0.3 }, 0)
-            .fromTo('#hero-step-2',
-                { autoAlpha: 0 },
-                { autoAlpha: 1, duration: 0.5 }, 0.5)
-
-            // Photo moves exactly to the left column (where name was)
-            .to('#hero-photo-wrapper', {
-                xPercent: -100,
-                duration: 1,
-                ease: "power2.inOut"
-            }, 0)
-
-            // Sidebar Bars transition
-            .to('#bar-1', { backgroundColor: '#333333', duration: 0.3 }, 0)
-            .to('#bar-2', { backgroundColor: '#ff6a00', duration: 0.3 }, 0.2);
     }
 
     // Fix Navigation for "Quem sou"
