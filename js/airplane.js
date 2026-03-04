@@ -271,11 +271,14 @@ function setupAirplaneAnimation(model) {
 
     // --- Wireframe Reveal Logic (The "Scanner" effect) ---
     // This animates the height/bottom of the second view (Layer 1 - Wireframe)
+    // immediateRender: false prevents GSAP from applying 'from' values instantly,
+    // which would conflict between the two animations on the same target.
     gsap.fromTo(scene.views[1],
         { height: 1, bottom: 0 },
         {
             height: 0, bottom: 1,
             ease: 'none',
+            immediateRender: false,
             scrollTrigger: {
                 trigger: "#airplane-experience .blueprint",
                 scrub: true,
@@ -291,6 +294,7 @@ function setupAirplaneAnimation(model) {
         {
             height: 1, bottom: 0,
             ease: 'none',
+            immediateRender: false,
             scrollTrigger: {
                 trigger: "#airplane-experience .blueprint",
                 scrub: true,
