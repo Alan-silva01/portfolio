@@ -130,7 +130,8 @@ class AirplaneScene {
             this.renderer.setSize(this.w, this.h);
 
             // Re-bind scroll triggers after resize on mobile since DOM heights might change
-            if (isMobile && typeof ScrollTrigger !== 'undefined') {
+            const checkMobile = window.innerWidth < 768;
+            if (checkMobile && typeof ScrollTrigger !== 'undefined') {
                 ScrollTrigger.refresh();
             }
 
