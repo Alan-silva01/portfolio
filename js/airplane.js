@@ -60,6 +60,29 @@ class AirplaneScene {
         this.onResize();
         window.addEventListener('resize', () => this.onResize(), false);
 
+        // On mobile, the address bar showing/hiding changes viewport height
+        // but doesn't fire the standard 'resize' event. visualViewport catches this.
+        if (isMobile && window.visualViewport) {
+            window.visualViewport.addEventListener('resize', () => {
+                this.w = window.innerWidth;
+                this.h = window.innerHeight;
+                if (this.renderer) {
+                    this.renderer.setSize(this.w, this.h);
+                }
+                if (this.views) {
+                    for (let ii = 0; ii < this.views.length; ++ii) {
+                        let camera = this.views[ii].camera;
+                        camera.aspect = this.w / this.h;
+                        camera.updateProjectionMatrix();
+                    }
+                }
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
+                }
+                this.render();
+            });
+        }
+
         if (model && model.children && model.children[0]) {
             let edges = new THREE.EdgesGeometry(model.children[0].geometry);
             let line = new THREE.LineSegments(edges);
