@@ -12,10 +12,7 @@ class AirplaneScene {
         });
 
         const isMobile = window.innerWidth < 768;
-
-        this.w = window.innerWidth;
-        this.h = window.innerHeight;
-        this.renderer.setSize(this.w, this.h);
+        this.renderer.setSize(window.innerWidth, window.innerHeight);
 
         // Optimize for mobile: Disable shadows and cap pixel ratio
         if (!isMobile) {
@@ -25,8 +22,8 @@ class AirplaneScene {
             this.renderer.shadowMap.enabled = false;
         }
 
-        const pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
-        this.renderer.setPixelRatio(isMobile ? Math.min(pixelRatio, 1.5) : Math.min(pixelRatio, 2));
+        const pixelRatio = Math.min(window.devicePixelRatio, isMobile ? 2 : 3);
+        this.renderer.setPixelRatio(pixelRatio);
 
         // Append to the experience container
         const container = document.querySelector('#airplane-experience');
@@ -61,15 +58,7 @@ class AirplaneScene {
         this.scene.add(this.softLight);
 
         this.onResize();
-
-        // Only trigger resize if horizontal width changes (prevents mobile address bar stutter)
-        let lastWidth = window.innerWidth;
-        window.addEventListener('resize', () => {
-            if (window.innerWidth !== lastWidth || !isMobile) {
-                lastWidth = window.innerWidth;
-                this.onResize();
-            }
-        }, false);
+        window.addEventListener('resize', () => this.onResize(), false);
 
         if (model && model.children && model.children[0]) {
             let edges = new THREE.EdgesGeometry(model.children[0].geometry);
@@ -118,22 +107,15 @@ class AirplaneScene {
                 let camera = view.camera;
                 camera.aspect = this.w / this.h;
                 let camZ = (screen.width - (this.w * 1)) / 3;
-                // On mobile, push camera much further back to fit the plane's traversal without breaking GSAP alignment
-                let minZ = this.w < 768 ? 450 : 180;
-                camera.position.z = Math.max(camZ, minZ);
+                // On mobile, push camera further back to make plane smaller
+                let minZ = this.w < 768 ? 280 : 180;
+                camera.position.z = camZ < minZ ? minZ : camZ;
                 camera.updateProjectionMatrix();
             }
         }
 
         if (this.renderer) {
             this.renderer.setSize(this.w, this.h);
-
-            // Re-bind scroll triggers after resize on mobile since DOM heights might change
-            const checkMobile = window.innerWidth < 768;
-            if (checkMobile && typeof ScrollTrigger !== 'undefined') {
-                ScrollTrigger.refresh();
-            }
-
             this.render();
         }
     }
@@ -227,23 +209,22 @@ function setupAirplaneAnimation(model) {
     gsap.to('#airplane-experience .scroll-cta', { opacity: 1 });
     gsap.set(canvas, { visibility: 'visible', autoAlpha: 0 });
 
-    const tau = Math.PI * 2;
-    const isMobile = window.innerWidth < 768;
-
-    // Show canvas only when experience is fully in view on mobile so it doesn't overlap previous sections
+    // Show canvas only when experience is in view
     ScrollTrigger.create({
         trigger: "#airplane-experience",
-        start: isMobile ? "top top" : "top center",
+        start: "top center",
         onEnter: () => gsap.to(canvas, { autoAlpha: 1 }),
         onLeaveBack: () => gsap.to(canvas, { autoAlpha: 0 })
     });
 
+    const tau = Math.PI * 2;
     gsap.set(plane.rotation, { y: tau * -.25 });
     gsap.set(plane.position, { x: 80, y: -32, z: -60 });
 
     scene.render();
 
     // On mobile, use faster section duration to match shorter scroll distances
+    const isMobile = window.innerWidth < 768;
     const sectionDuration = isMobile ? 0.6 : 1;
 
     // Parallax effects (reduced on mobile)
