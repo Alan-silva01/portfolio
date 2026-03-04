@@ -12,7 +12,11 @@ class AirplaneScene {
         });
 
         const isMobile = window.innerWidth < 768;
-        this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+        // Use a container or stable reference for height to prevent mobile vh mismatch
+        this.w = window.innerWidth;
+        this.h = window.innerHeight;
+        this.renderer.setSize(this.w, this.h);
 
         // Optimize for mobile: Disable shadows and cap pixel ratio
         if (!isMobile) {
@@ -124,6 +128,12 @@ class AirplaneScene {
 
         if (this.renderer) {
             this.renderer.setSize(this.w, this.h);
+
+            // Re-bind scroll triggers after resize on mobile since DOM heights might change
+            if (isMobile && typeof ScrollTrigger !== 'undefined') {
+                ScrollTrigger.refresh();
+            }
+
             this.render();
         }
     }
