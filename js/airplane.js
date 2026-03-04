@@ -22,8 +22,8 @@ class AirplaneScene {
             this.renderer.shadowMap.enabled = false;
         }
 
-        const pixelRatio = Math.min(window.devicePixelRatio, isMobile ? 2 : 3);
-        this.renderer.setPixelRatio(pixelRatio);
+        const pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1;
+        this.renderer.setPixelRatio(isMobile ? Math.min(pixelRatio, 1.5) : Math.min(pixelRatio, 2));
 
         // Append to the experience container
         const container = document.querySelector('#airplane-experience');
@@ -58,7 +58,15 @@ class AirplaneScene {
         this.scene.add(this.softLight);
 
         this.onResize();
-        window.addEventListener('resize', () => this.onResize(), false);
+
+        // Only trigger resize if horizontal width changes (prevents mobile address bar stutter)
+        let lastWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            if (window.innerWidth !== lastWidth || !isMobile) {
+                lastWidth = window.innerWidth;
+                this.onResize();
+            }
+        }, false);
 
         if (model && model.children && model.children[0]) {
             let edges = new THREE.EdgesGeometry(model.children[0].geometry);
@@ -218,8 +226,12 @@ function setupAirplaneAnimation(model) {
     });
 
     const tau = Math.PI * 2;
+    // Mobile coordinate multipliers to keep plane in view
+    const xM = isMobile ? 0.4 : 1;
+    const yM = isMobile ? 0.8 : 1;
+
     gsap.set(plane.rotation, { y: tau * -.25 });
-    gsap.set(plane.position, { x: 80, y: -32, z: -60 });
+    gsap.set(plane.position, { x: 80 * xM, y: -32 * yM, z: -60 });
 
     scene.render();
 
@@ -232,7 +244,7 @@ function setupAirplaneAnimation(model) {
         y: isMobile ? "15%" : "30%",
         scrollTrigger: {
             trigger: ".ground-container",
-            scrub: true,
+            scrub: isMobile ? 1 : true,
             start: "top bottom",
             end: "bottom top"
         }
@@ -242,7 +254,7 @@ function setupAirplaneAnimation(model) {
         y: isMobile ? "10%" : "25%",
         scrollTrigger: {
             trigger: ".ground-container",
-            scrub: true,
+            scrub: isMobile ? 1 : true,
             start: "top bottom",
             end: "bottom top"
         }
@@ -262,7 +274,7 @@ function setupAirplaneAnimation(model) {
         onUpdate: scene.render,
         scrollTrigger: {
             trigger: "#airplane-experience .airplane-content",
-            scrub: true,
+            scrub: isMobile ? 1 : true,
             start: "top top",
             end: "bottom bottom"
         },
@@ -278,7 +290,7 @@ function setupAirplaneAnimation(model) {
             ease: 'none',
             scrollTrigger: {
                 trigger: "#airplane-experience .blueprint",
-                scrub: true,
+                scrub: isMobile ? 1 : true,
                 start: "bottom bottom",
                 end: "bottom top"
             },
@@ -293,7 +305,7 @@ function setupAirplaneAnimation(model) {
             ease: 'none',
             scrollTrigger: {
                 trigger: "#airplane-experience .blueprint",
-                scrub: true,
+                scrub: isMobile ? 1 : true,
                 start: "top bottom",
                 end: "top top"
             },
@@ -304,34 +316,34 @@ function setupAirplaneAnimation(model) {
 
     let delay = 0;
     tl.to('#airplane-experience .scroll-cta', { duration: 0.25, opacity: 0 }, delay);
-    tl.to(plane.position, { x: -10, ease: 'power1.in' }, delay);
+    tl.to(plane.position, { x: -10 * xM, ease: 'power1.in' }, delay);
 
     delay += sectionDuration;
     tl.to(plane.rotation, { x: tau * .25, y: 0, z: -tau * 0.05, ease: 'power1.inOut' }, delay);
-    tl.to(plane.position, { x: -40, y: 0, z: -60, ease: 'power1.inOut' }, delay);
+    tl.to(plane.position, { x: -40 * xM, y: 0, z: -60, ease: 'power1.inOut' }, delay);
 
     delay += sectionDuration;
     tl.to(plane.rotation, { x: tau * .25, y: 0, z: tau * 0.05, ease: 'power3.inOut' }, delay);
-    tl.to(plane.position, { x: 40, y: 0, z: -60, ease: 'power2.inOut' }, delay);
+    tl.to(plane.position, { x: 40 * xM, y: 0, z: -60, ease: 'power2.inOut' }, delay);
 
     delay += sectionDuration;
     tl.to(plane.rotation, { x: tau * .2, y: 0, z: -tau * 0.1, ease: 'power3.inOut' }, delay);
-    tl.to(plane.position, { x: -40, y: 0, z: -30, ease: 'power2.inOut' }, delay);
+    tl.to(plane.position, { x: -40 * xM, y: 0, z: -30, ease: 'power2.inOut' }, delay);
 
     delay += sectionDuration;
     tl.to(plane.rotation, { x: 0, z: 0, y: tau * .25 }, delay);
-    tl.to(plane.position, { x: 0, y: -10, z: 50 }, delay);
+    tl.to(plane.position, { x: 0, y: -10 * yM, z: 50 }, delay);
 
     delay += sectionDuration * 2;
     tl.to(plane.rotation, { x: tau * 0.25, y: tau * .5, z: 0, ease: 'power4.inOut' }, delay);
     tl.to(plane.position, { z: 30, ease: 'power4.inOut' }, delay);
 
     delay += sectionDuration;
-    tl.to(plane.position, { z: 60, x: 30, ease: 'power4.inOut' }, delay);
+    tl.to(plane.position, { z: 60, x: 30 * xM, ease: 'power4.inOut' }, delay);
 
     delay += sectionDuration;
     tl.to(plane.rotation, { x: tau * 0.35, y: tau * .75, z: tau * 0.6, ease: 'power4.inOut' }, delay);
-    tl.to(plane.position, { z: 100, x: 20, y: 0, ease: 'power4.inOut' }, delay);
+    tl.to(plane.position, { z: 100, x: 20 * xM, y: 0, ease: 'power4.inOut' }, delay);
 
     delay += sectionDuration;
     tl.to(plane.rotation, { x: tau * 0.15, y: tau * .85, z: 0, ease: 'power1.in' }, delay);
@@ -339,7 +351,7 @@ function setupAirplaneAnimation(model) {
 
     delay += sectionDuration;
     tl.to(plane.rotation, { x: -tau * 0.05, y: tau, z: -tau * 0.1, ease: 'none' }, delay);
-    tl.to(plane.position, { x: 0, y: 30, z: 320, ease: 'power1.in' }, delay);
+    tl.to(plane.position, { x: 0, y: 30 * yM, z: 320, ease: 'power1.in' }, delay);
     tl.to(scene.light.position, { x: 0, y: 0, z: 0 }, delay);
 }
 
