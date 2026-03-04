@@ -226,6 +226,7 @@ function setupAirplaneAnimation(model) {
     });
 
     const tau = Math.PI * 2;
+    const isMobile = window.innerWidth < 768; // Added here since it's used below
     // Mobile coordinate multipliers to keep plane in view
     const xM = isMobile ? 0.4 : 1;
     const yM = isMobile ? 0.8 : 1;
@@ -236,7 +237,6 @@ function setupAirplaneAnimation(model) {
     scene.render();
 
     // On mobile, use faster section duration to match shorter scroll distances
-    const isMobile = window.innerWidth < 768;
     const sectionDuration = isMobile ? 0.6 : 1;
 
     // Parallax effects (reduced on mobile)
