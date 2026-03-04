@@ -231,10 +231,10 @@ function setupAirplaneAnimation(model) {
     gsap.to('#airplane-experience .scroll-cta', { opacity: 1 });
     gsap.set(canvas, { visibility: 'visible', autoAlpha: 0 });
 
-    // Show canvas only when experience is in view
+    // Show canvas only when experience is fully in view on mobile so it doesn't overlap previous sections
     ScrollTrigger.create({
         trigger: "#airplane-experience",
-        start: "top center",
+        start: isMobile ? "top top" : "top center",
         onEnter: () => gsap.to(canvas, { autoAlpha: 1 }),
         onLeaveBack: () => gsap.to(canvas, { autoAlpha: 0 })
     });
