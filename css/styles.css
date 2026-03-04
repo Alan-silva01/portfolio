@@ -1967,17 +1967,17 @@ footer {
         height: 55% !important;
         display: flex !important;
         justify-content: center !important;
-        align-items: flex-start !important;
+        align-items: flex-end !important;
         overflow: hidden !important;
     }
 
     .profile-photo {
-        height: 130% !important;
+        height: 100% !important;
         width: auto !important;
         max-width: none !important;
-        object-fit: cover !important;
-        object-position: top center !important;
-        transform: translateY(-30px) !important;
+        object-fit: contain !important;
+        object-position: bottom center !important;
+        transform: translateY(0) !important;
         margin-right: 0 !important;
     }
 
