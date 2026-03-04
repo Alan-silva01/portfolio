@@ -345,6 +345,14 @@ function setupAirplaneAnimation(model) {
     tl.to(plane.rotation, { x: -tau * 0.05, y: tau, z: -tau * 0.1, ease: 'none' }, delay);
     tl.to(plane.position, { x: 0, y: 30, z: 320, ease: 'power1.in' }, delay);
     tl.to(scene.light.position, { x: 0, y: 0, z: 0 }, delay);
+
+    // Force ScrollTrigger to recalculate all positions after setup.
+    // This fixes the wireframe misalignment on normal page refresh (F5)
+    // where the browser restores the previous scroll position.
+    requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+        scene.render();
+    });
 }
 
 // Start immediately or on load
