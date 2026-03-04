@@ -13,11 +13,8 @@ class AirplaneScene {
 
         const isMobile = window.innerWidth < 768;
 
-        // Use a container or stable reference for height to prevent mobile vh mismatch
         this.w = window.innerWidth;
-        // Use the height of a 100vh element so our renderer perfectly matches CSS layout regardless of vh vs innerHeight discrepancies
-        let heightRef = document.querySelector('#airplane-experience .blueprint svg');
-        this.h = heightRef ? heightRef.clientHeight : window.innerHeight;
+        this.h = window.innerHeight;
         this.renderer.setSize(this.w, this.h);
 
         // Optimize for mobile: Disable shadows and cap pixel ratio
@@ -113,8 +110,7 @@ class AirplaneScene {
 
     onResize = () => {
         this.w = window.innerWidth;
-        let heightRef = document.querySelector('#airplane-experience .blueprint svg');
-        this.h = heightRef ? heightRef.clientHeight : window.innerHeight;
+        this.h = window.innerHeight;
 
         if (this.views) {
             for (let ii = 0; ii < this.views.length; ++ii) {
@@ -231,6 +227,9 @@ function setupAirplaneAnimation(model) {
     gsap.to('#airplane-experience .scroll-cta', { opacity: 1 });
     gsap.set(canvas, { visibility: 'visible', autoAlpha: 0 });
 
+    const tau = Math.PI * 2;
+    const isMobile = window.innerWidth < 768;
+
     // Show canvas only when experience is fully in view on mobile so it doesn't overlap previous sections
     ScrollTrigger.create({
         trigger: "#airplane-experience",
@@ -238,9 +237,6 @@ function setupAirplaneAnimation(model) {
         onEnter: () => gsap.to(canvas, { autoAlpha: 1 }),
         onLeaveBack: () => gsap.to(canvas, { autoAlpha: 0 })
     });
-
-    const tau = Math.PI * 2;
-    const isMobile = window.innerWidth < 768; // Added here since it's used below
 
     gsap.set(plane.rotation, { y: tau * -.25 });
     gsap.set(plane.position, { x: 80, y: -32, z: -60 });
