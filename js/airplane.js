@@ -15,7 +15,9 @@ class AirplaneScene {
 
         // Use a container or stable reference for height to prevent mobile vh mismatch
         this.w = window.innerWidth;
-        this.h = window.innerHeight;
+        // Use the height of a 100vh element so our renderer perfectly matches CSS layout regardless of vh vs innerHeight discrepancies
+        let heightRef = document.querySelector('#airplane-experience .blueprint svg');
+        this.h = heightRef ? heightRef.clientHeight : window.innerHeight;
         this.renderer.setSize(this.w, this.h);
 
         // Optimize for mobile: Disable shadows and cap pixel ratio
@@ -111,7 +113,8 @@ class AirplaneScene {
 
     onResize = () => {
         this.w = window.innerWidth;
-        this.h = window.innerHeight;
+        let heightRef = document.querySelector('#airplane-experience .blueprint svg');
+        this.h = heightRef ? heightRef.clientHeight : window.innerHeight;
 
         if (this.views) {
             for (let ii = 0; ii < this.views.length; ++ii) {

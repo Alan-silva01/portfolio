@@ -31,7 +31,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100dvh;
+    min-height: 100vh;
 }
 
 ul {
@@ -92,7 +92,7 @@ a {
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    min-height: 100dvh;
+    min-height: 100vh;
     /* Ensure hero section takes full height */
 }
 
@@ -372,7 +372,7 @@ a {
 /* Projects Section Specific - Full Screen Component */
 .projects-section {
     padding: 3rem 0 !important;
-    min-height: 100dvh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -931,7 +931,7 @@ footer {
         align-items: flex-start;
         /* Start from top on mobile */
         height: auto;
-        min-height: 100dvh;
+        min-height: 100vh;
     }
 
     .hero-card {
@@ -1088,7 +1088,7 @@ footer {
 }
 
 .stuck-grid {
-    height: 100dvh;
+    height: 100vh;
     perspective: 1000px;
     transform-style: preserve-3d;
 
@@ -1499,7 +1499,7 @@ footer {
 #airplane-experience .loading {
     position: fixed;
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
     top: 0;
     left: 0;
     display: flex;
@@ -1514,7 +1514,7 @@ footer {
     position: relative;
     padding: var(--airplane-padding);
     width: 100%;
-    min-height: 100dvh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1673,7 +1673,7 @@ footer {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100dvh;
+    height: 100vh;
     stroke: white;
     pointer-events: none;
     visibility: hidden;
