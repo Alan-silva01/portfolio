@@ -120,54 +120,6 @@ class AirplaneScene {
     }
 }
 
-// Procedural 3D Paper Airplane generator as absolute last resort
-function createPaperAirplaneMesh() {
-    const geometry = new THREE.BufferGeometry();
-
-    const vertices = new Float32Array([
-        0, 0, 50,
-        -48, 2, -30,
-        48, 2, -30,
-        0, 3, -35,
-        0, -12, -25,
-        -10, 1, -32,
-        10, 1, -32,
-        -3, -10, -28,
-        3, -10, -28
-    ]);
-
-    const indices = [
-        0, 1, 5,
-        0, 6, 2,
-        0, 5, 3,
-        0, 3, 6,
-        0, 3, 7,
-        0, 8, 3,
-        0, 7, 4,
-        0, 4, 8,
-        5, 1, 3,
-        6, 3, 2,
-        7, 3, 4,
-        8, 4, 3
-    ];
-
-    geometry.setIndex(indices);
-    geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
-    geometry.computeVertexNormals();
-
-    const mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({
-        color: 0x171511,
-        specular: 0xD0CBC7,
-        shininess: 5,
-        flatShading: true,
-        side: THREE.DoubleSide
-    }));
-
-    const group = new THREE.Group();
-    group.add(mesh);
-    return group;
-}
-
 function initAirplaneExperience() {
     console.log("Initializing Airplane Experience...");
 
@@ -193,7 +145,7 @@ function initAirplaneExperience() {
     function handleModelReady(modelObj) {
         if (animationInitialized) return;
         animationInitialized = true;
-        console.log("Original 1405 Plane model loaded successfully.");
+        console.log("Original 3D Jet Airplane model loaded successfully.");
 
         try {
             modelObj.traverse(function (child) {
@@ -215,42 +167,25 @@ function initAirplaneExperience() {
     try {
         const LoaderClass = THREE.OBJLoader || window.OBJLoader;
         if (typeof LoaderClass === 'function') {
-            const manager = new THREE.LoadingManager(() => { });
-            manager.onError = (err) => {
-                console.warn("LoadingManager error:", err);
-            };
-
-            const loader = new LoaderClass(manager);
-
-            // Candidate paths for Vercel/production resolution
-            const candidatePaths = [
-                'assets/plane.obj',
-                './assets/plane.obj',
-                '/assets/plane.obj'
-            ];
-
-            function tryLoadPath(index) {
-                if (animationInitialized) return;
-                if (index >= candidatePaths.length) {
-                    console.warn("All candidate OBJ paths failed. Executing fallback mesh.");
-                    setupAirplaneAnimation(createPaperAirplaneMesh());
-                    return;
-                }
-
-                const path = candidatePaths[index];
-                console.log(`Attempting to load plane model from path: ${path}`);
+            const loader = new LoaderClass();
+            
+            // Try paths for local & production Vercel environments
+            const paths = ['assets/plane.obj', './assets/plane.obj', '/assets/plane.obj'];
+            
+            function loadPath(i) {
+                if (i >= paths.length || animationInitialized) return;
                 loader.load(
-                    path,
+                    paths[i],
                     (obj) => handleModelReady(obj),
-                    (xhr) => { if (xhr.total > 0) console.log((xhr.loaded / xhr.total * 100) + '% loaded'); },
-                    (error) => {
-                        console.warn(`Path ${path} failed to load, trying next candidate path...`, error);
-                        tryLoadPath(index + 1);
+                    undefined,
+                    (err) => {
+                        console.warn(`Failed loading ${paths[i]}, trying next path...`);
+                        loadPath(i + 1);
                     }
                 );
             }
-
-            tryLoadPath(0);
+            
+            loadPath(0);
         } else {
             console.error("OBJLoader not available.");
         }
