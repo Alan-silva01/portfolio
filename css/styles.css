@@ -1545,8 +1545,7 @@ footer {
 .decolagem-cta {
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUpCTA 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    animation-delay: 0.5s;
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 .decolagem-cta h2 {
@@ -1706,16 +1705,16 @@ footer {
     font-weight: 700;
     letter-spacing: -1px;
     line-height: 1.1;
-    /* Tighter line spacing */
 
     /* Efeito de fade-in ao aparecer na seção */
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 2s ease-out, transform 2s ease-out;
+    transition: opacity 1s ease-out, transform 1s ease-out;
 }
 
 #airplane-experience .section.is-visible h1,
-#airplane-experience .section.is-visible h2 {
+#airplane-experience .section.is-visible h2,
+#airplane-experience .section.is-visible .decolagem-cta {
     opacity: 1;
     transform: translateY(0);
 }

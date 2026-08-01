@@ -107,7 +107,6 @@ class AirplaneScene {
                 let camera = view.camera;
                 camera.aspect = this.w / this.h;
                 let camZ = (screen.width - (this.w * 1)) / 3;
-                // On mobile, push camera further back to make plane smaller
                 let minZ = this.w < 768 ? 280 : 180;
                 camera.position.z = camZ < minZ ? minZ : camZ;
                 camera.updateProjectionMatrix();
@@ -126,21 +125,30 @@ function initAirplaneExperience() {
 
     if (typeof gsap === 'undefined' || typeof THREE === 'undefined') {
         console.error("GSAP or Three.js not loaded!");
-        hideLoading();
         return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Ensure section text visibility works GUARANTEED
+    ScrollTrigger.batch("#airplane-experience .section", {
+        onEnter: (elements) => elements.forEach(el => el.classList.add('is-visible')),
+        onLeaveBack: (elements) => elements.forEach(el => el.classList.remove('is-visible')),
+        start: "top 75%"
+    });
+
     // Initial SVG states
     gsap.set('#line-length, #line-wingspan, #circle-phalange', { opacity: 0 });
 
-    let object;
+    let animationInitialized = false;
 
-    function onModelLoaded() {
-        console.log("Model loaded successfully.");
+    function handleModelReady(modelObj) {
+        if (animationInitialized) return;
+        animationInitialized = true;
+        console.log("Original 1405 Plane model loaded successfully.");
+
         try {
-            object.traverse(function (child) {
+            modelObj.traverse(function (child) {
                 if (child.isMesh) {
                     child.material = new THREE.MeshPhongMaterial({
                         color: 0x171511,
@@ -150,51 +158,34 @@ function initAirplaneExperience() {
                     });
                 }
             });
-            setupAirplaneAnimation(object);
+            setupAirplaneAnimation(modelObj);
         } catch (e) {
-            console.error("Error setting up animation:", e);
-            hideLoading();
+            console.error("Error setting up animation with loaded model:", e);
         }
-    }
-
-    function onModelError(error) {
-        console.error("Error loading model:", error);
-        hideLoading();
-    }
-
-    function hideLoading() {
-        gsap.to('#airplane-experience .loading', { autoAlpha: 0, duration: 0.5 });
     }
 
     try {
-        const manager = new THREE.LoadingManager(onModelLoaded);
-        manager.onError = onModelError;
-
-        // Use standard OBJLoader if available, otherwise fallback
         const LoaderClass = THREE.OBJLoader || window.OBJLoader;
-        if (typeof LoaderClass !== 'function') {
-            console.error("OBJLoader not found in THREE or window scope. Available THREE keys:", Object.keys(THREE));
-            throw new Error("OBJLoader not found");
+        if (typeof LoaderClass === 'function') {
+            const manager = new THREE.LoadingManager(() => { });
+            manager.onError = (err) => {
+                console.warn("LoadingManager error:", err);
+            };
+
+            const loader = new LoaderClass(manager);
+            // Load the exact original 1405 Plane model hosted locally
+            loader.load('assets/plane.obj',
+                (obj) => { handleModelReady(obj); },
+                (xhr) => { if (xhr.total > 0) console.log((xhr.loaded / xhr.total * 100) + '% loaded'); },
+                (error) => {
+                    console.error("Error loading local assets/plane.obj:", error);
+                }
+            );
+        } else {
+            console.error("OBJLoader not available.");
         }
-
-        const loader = new LoaderClass(manager);
-        loader.load('https://assets.codepen.io/557388/1405+Plane_1.obj',
-            (obj) => { object = obj; },
-            (xhr) => { if (xhr.total > 0) console.log((xhr.loaded / xhr.total * 100) + '% loaded'); },
-            onModelError
-        );
-
-        // Fallback: hide loading after 10 seconds anyway to not block user
-        setTimeout(() => {
-            if (document.querySelector('#airplane-experience .loading').style.visibility !== 'hidden') {
-                console.warn("Loading timeout reached. Forcing hide.");
-                hideLoading();
-            }
-        }, 10000);
-
     } catch (e) {
-        console.error("Critical error in init:", e);
-        hideLoading();
+        console.error("Critical error in initAirplaneExperience:", e);
     }
 }
 
@@ -205,11 +196,14 @@ function setupAirplaneAnimation(model) {
     const plane = scene.modelGroup;
     const canvas = scene.renderer.domElement;
 
-    gsap.to('#airplane-experience .loading', { autoAlpha: 0 });
+    const loadingEl = document.querySelector('#airplane-experience .loading');
+    if (loadingEl) {
+        gsap.to(loadingEl, { autoAlpha: 0, duration: 0.5 });
+    }
+
     gsap.to('#airplane-experience .scroll-cta', { opacity: 1 });
     gsap.set(canvas, { visibility: 'visible', autoAlpha: 0 });
 
-    // Show canvas only when experience is in view
     ScrollTrigger.create({
         trigger: "#airplane-experience",
         start: "top center",
@@ -223,11 +217,9 @@ function setupAirplaneAnimation(model) {
 
     scene.render();
 
-    // On mobile, use faster section duration to match shorter scroll distances
     const isMobile = window.innerWidth < 768;
     const sectionDuration = isMobile ? 0.6 : 1;
 
-    // Parallax effects (reduced on mobile)
     gsap.to('.ground', {
         y: isMobile ? "15%" : "30%",
         scrollTrigger: {
@@ -248,16 +240,6 @@ function setupAirplaneAnimation(model) {
         }
     });
 
-    // Revelar textos ao entrar na viewport
-    ScrollTrigger.batch("#airplane-experience .section", {
-        onEnter: (elements) => elements.forEach(el => el.classList.add('is-visible')),
-        onLeaveBack: (elements) => elements.forEach(el => el.classList.remove('is-visible')),
-        start: "top 40%"
-    });
-
-
-    // Timeline for plane movement
-
     const tl = gsap.timeline({
         onUpdate: scene.render,
         scrollTrigger: {
@@ -269,10 +251,7 @@ function setupAirplaneAnimation(model) {
         defaults: { duration: sectionDuration, ease: 'power2.inOut' }
     });
 
-    // --- Wireframe Reveal Logic (The "Scanner" effect) ---
-    // This animates the height/bottom of the second view (Layer 1 - Wireframe)
-    // immediateRender: false prevents GSAP from applying 'from' values instantly,
-    // which would conflict between the two animations on the same target.
+    // Wireframe reveal logic (blueprint scanner)
     gsap.fromTo(scene.views[1],
         { height: 1, bottom: 0 },
         {
@@ -304,7 +283,6 @@ function setupAirplaneAnimation(model) {
             onUpdate: scene.render
         }
     );
-    // --------------------------------------------------
 
     let delay = 0;
     tl.to('#airplane-experience .scroll-cta', { duration: 0.25, opacity: 0 }, delay);
@@ -346,9 +324,6 @@ function setupAirplaneAnimation(model) {
     tl.to(plane.position, { x: 0, y: 30, z: 320, ease: 'power1.in' }, delay);
     tl.to(scene.light.position, { x: 0, y: 0, z: 0 }, delay);
 
-    // Force ScrollTrigger to recalculate all positions after setup.
-    // This fixes the wireframe misalignment on normal page refresh (F5)
-    // where the browser restores the previous scroll position.
     requestAnimationFrame(() => {
         ScrollTrigger.refresh();
         scene.render();
