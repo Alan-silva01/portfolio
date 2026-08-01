@@ -120,6 +120,63 @@ class AirplaneScene {
     }
 }
 
+// Procedural 3D Paper Airplane generator as bulletproof fallback if external asset fails
+function createPaperAirplaneMesh() {
+    const geometry = new THREE.BufferGeometry();
+
+    const vertices = new Float32Array([
+        // 0: Nose tip
+        0, 0, 50,
+        // 1: Left Wingtip
+        -48, 2, -30,
+        // 2: Right Wingtip
+        48, 2, -30,
+        // 3: Tail Top Center
+        0, 3, -35,
+        // 4: Tail Bottom Keel
+        0, -12, -25,
+        // 5: Left Top Fold
+        -10, 1, -32,
+        // 6: Right Top Fold
+        10, 1, -32,
+        // 7: Keel Left
+        -3, -10, -28,
+        // 8: Keel Right
+        3, -10, -28
+    ]);
+
+    const indices = [
+        0, 1, 5,
+        0, 6, 2,
+        0, 5, 3,
+        0, 3, 6,
+        0, 3, 7,
+        0, 8, 3,
+        0, 7, 4,
+        0, 4, 8,
+        5, 1, 3,
+        6, 3, 2,
+        7, 3, 4,
+        8, 4, 3
+    ];
+
+    geometry.setIndex(indices);
+    geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    geometry.computeVertexNormals();
+
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({
+        color: 0x171511,
+        specular: 0xD0CBC7,
+        shininess: 5,
+        flatShading: true,
+        side: THREE.DoubleSide
+    }));
+
+    const group = new THREE.Group();
+    group.add(mesh);
+    return group;
+}
+
 function initAirplaneExperience() {
     console.log("Initializing Airplane Experience...");
 
@@ -145,7 +202,7 @@ function initAirplaneExperience() {
     function handleModelReady(modelObj) {
         if (animationInitialized) return;
         animationInitialized = true;
-        console.log("Original 1405 Plane model loaded successfully.");
+        console.log("Plane 3D model loaded successfully.");
 
         try {
             modelObj.traverse(function (child) {
@@ -160,8 +217,16 @@ function initAirplaneExperience() {
             });
             setupAirplaneAnimation(modelObj);
         } catch (e) {
-            console.error("Error setting up animation with loaded model:", e);
+            console.error("Error setting up animation with loaded model, fallback to procedural mesh:", e);
+            setupAirplaneAnimation(createPaperAirplaneMesh());
         }
+    }
+
+    function handleModelFallback() {
+        if (animationInitialized) return;
+        animationInitialized = true;
+        console.warn("Using procedural 3D paper airplane fallback.");
+        setupAirplaneAnimation(createPaperAirplaneMesh());
     }
 
     try {
@@ -170,22 +235,36 @@ function initAirplaneExperience() {
             const manager = new THREE.LoadingManager(() => { });
             manager.onError = (err) => {
                 console.warn("LoadingManager error:", err);
+                handleModelFallback();
             };
 
             const loader = new LoaderClass(manager);
-            // Load the exact original 1405 Plane model hosted locally
-            loader.load('assets/plane.obj',
-                (obj) => { handleModelReady(obj); },
+            const modelPath = 'assets/plane.obj';
+
+            loader.load(
+                modelPath,
+                (obj) => handleModelReady(obj),
                 (xhr) => { if (xhr.total > 0) console.log((xhr.loaded / xhr.total * 100) + '% loaded'); },
                 (error) => {
-                    console.error("Error loading local assets/plane.obj:", error);
+                    console.warn("Error loading assets/plane.obj on server, executing fallback:", error);
+                    handleModelFallback();
                 }
             );
+
+            // Safety timeout: If network/Vercel stalls for > 2 seconds, trigger fallback so page NEVER breaks
+            setTimeout(() => {
+                if (!animationInitialized) {
+                    console.warn("Model fetch timeout reached. Activating fallback plane.");
+                    handleModelFallback();
+                }
+            }, 2000);
         } else {
-            console.error("OBJLoader not available.");
+            console.warn("OBJLoader not available. Activating fallback plane.");
+            handleModelFallback();
         }
     } catch (e) {
         console.error("Critical error in initAirplaneExperience:", e);
+        handleModelFallback();
     }
 }
 
