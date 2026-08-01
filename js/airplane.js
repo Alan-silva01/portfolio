@@ -1,3 +1,5 @@
+import { PLANE_OBJ_DATA } from './planeData.js';
+
 // Airplane Scene Management
 class AirplaneScene {
     constructor(model) {
@@ -145,7 +147,7 @@ function initAirplaneExperience() {
     function handleModelReady(modelObj) {
         if (animationInitialized) return;
         animationInitialized = true;
-        console.log("Original 3D Jet Airplane model loaded successfully.");
+        console.log("Original 3D Jet Airplane model parsed successfully.");
 
         try {
             modelObj.traverse(function (child) {
@@ -169,22 +171,26 @@ function initAirplaneExperience() {
         if (typeof LoaderClass === 'function') {
             const loader = new LoaderClass();
             
-            // Try paths for local & production Vercel environments
+            // 1. Instant parsing of embedded 3D Jet Airplane model (No HTTP request needed)
+            if (PLANE_OBJ_DATA) {
+                const parsedModel = loader.parse(PLANE_OBJ_DATA);
+                if (parsedModel) {
+                    handleModelReady(parsedModel);
+                    return;
+                }
+            }
+
+            // 2. Fallback fetch if parsing fails
             const paths = ['assets/plane.obj', './assets/plane.obj', '/assets/plane.obj'];
-            
             function loadPath(i) {
                 if (i >= paths.length || animationInitialized) return;
                 loader.load(
                     paths[i],
                     (obj) => handleModelReady(obj),
                     undefined,
-                    (err) => {
-                        console.warn(`Failed loading ${paths[i]}, trying next path...`);
-                        loadPath(i + 1);
-                    }
+                    () => loadPath(i + 1)
                 );
             }
-            
             loadPath(0);
         } else {
             console.error("OBJLoader not available.");
