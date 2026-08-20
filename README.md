@@ -21,7 +21,7 @@ Soluções personalizadas em IA, Automação e Sistemas que transformam processo
 ### Credenciais Rápidas (Badges/Tags)
 - ✅ Graduado em Investigação Forense e Perícia Criminal
 - ✅ Técnico em Automações Industriais
-- ✅ **Parceiro Certificado BotConversar** 🏆
+- ✅ **Parceiro Certificado BotConversa** 🏆
 - ✅ **Formação Comunidade Sem Codar - Renato Asse** 🎓
 - ✅ **Formação Comunidade Dinastia - Guilherme Reis** 🚀
 - ✅ Especialista em N8N, Supabase, IA Conversacional
